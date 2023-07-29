@@ -5,8 +5,7 @@
 }
 
 body {
-  margin: 0;
-  height: 100vh;
+  margin: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,12 +13,16 @@ body {
 
 #gridContainer {
   outline: 5px solid black;
+  position: relative;
 }
 
 td {
-  height: 49px;
-  width: 49px;
+  padding: 0;
+  height: 40px;
+  width: 40px;
   outline: 1px solid black;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .floating-buttons {
@@ -56,4 +59,13 @@ td {
 
 .floating-buttons:hover {
   filter: opacity(100%) !important;
+}
+
+#ProjectionMine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 40px;
+  height: 40px;
 }
