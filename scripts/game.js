@@ -73,6 +73,7 @@ function createTable() {
   var table = document.createElement("table");
   table.setAttribute("cellspacing", "0");
   table.setAttribute("cellpadding", "0");
+  table.setAttribute("id", "table");
 
   for (var i = 0; i < rows; i++) {
     var tr = document.createElement("tr");
