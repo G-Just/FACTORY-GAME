@@ -8,7 +8,7 @@ class Ore {
     var AllCells = Array.from(AllCellsHTML);
     const SelectedPlace = AllCells[Math.floor(Math.random() * 629)];
     SelectedPlace.innerHTML = `<i class="fa-solid fa-bolt fa-2xl"></i>`;
-    SelectedPlace.classList.add("OreIron");
+    SelectedPlace.classList = "OreIron";
   }
 }
 
@@ -32,9 +32,20 @@ class Building {
       const { clientX, clientY } = event;
       Projection.style.left = `${Math.floor(clientX / 40) * 40}px`;
       Projection.style.top = `${Math.floor(clientY / 40) * 40}px`;
+      document.addEventListener("click", (e) => {
+        // Retrieve class from clicked element
+        let elementClass = e.target.classList;
+        if (elementClass[0] === "OreIron") {
+          Projection.remove();
+          e.target.innerHTML = `<i class="fa-solid fa-industry fa-2xl"></i>`;
+          e.target.classlist = "BuildingMine";
+        }
+      });
     };
   }
-  place(id) {}
+  place() {
+    123;
+  }
 }
 // ======================================================================
 
