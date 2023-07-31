@@ -45,36 +45,36 @@ td {
   position: absolute;
 }
 
-#guide {
+#dropdown {
+  position: absolute;
   top: 35px;
-  left: 30px;
-  background-color: yellow;
-  border-radius: 50%;
-  border: 1px solid black;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#dropdown_menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.building-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
   width: 100px;
   height: 100px;
   font-size: 40pt;
   font-weight: bold;
-  filter: opacity(30%);
   cursor: pointer;
 }
 
 #build {
-  bottom: 85px;
-  right: 30px;
   background-color: black;
-  border-radius: 10px;
   border: 1px solid cyan;
-  width: 100px;
-  height: 100px;
-  font-size: 40pt;
-  font-weight: bold;
-  filter: opacity(30%);
-  cursor: pointer;
-}
-
-.floating-buttons:hover {
-  filter: opacity(100%) !important;
 }
 
 #ProjectionMine {
@@ -89,4 +89,17 @@ td {
 
 i {
   pointer-events: none;
+}
+
+#guide {
+  top: 35px;
+  left: 30px;
+  background-color: yellow;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  font-size: 40pt;
+  font-weight: bold;
+  cursor: pointer;
 }
