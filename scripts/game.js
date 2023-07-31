@@ -16,88 +16,75 @@ class Building {
   //accepted types = mine, conveyor, smelter
   constructor(_type) {
     this.type = _type;
+    if (_type === "mine") {
+      this.building = `<i class="fa-solid fa-oil-well fa-xl"></i>`;
+    }
+    if (_type === "conveyor") {
+      this.building = `<i class="fa-solid fa-arrow-right fa-2xl"></i>`;
+    }
+    if (_type === "smelter") {
+      this.building = `<i class="fa-solid fa-industry fa-xl"></i>`;
+    }
   }
   //Used to place the building.
   select() {
-    const Grid = document.getElementById("gridContainer");
     const CreatingProjection = document.createElement("div");
-    CreatingProjection.setAttribute("id", "ProjectionMine");
-    CreatingProjection.innerHTML = `<i class="fa-solid fa-industry fa-2xl"></i>`;
+    CreatingProjection.setAttribute("id", "Projection");
+    CreatingProjection.innerHTML = this.building;
     document.body.insertBefore(
       CreatingProjection,
       document.getElementById("guide")
     );
-    const Projection = document.getElementById("ProjectionMine");
+    const Grid = document.getElementById("gridContainer");
+    const Projection = document.getElementById("Projection");
     Grid.onpointermove = (event) => {
       const { clientX, clientY } = event;
       Projection.style.left = `${Math.floor(clientX / 40) * 40}px`;
       Projection.style.top = `${Math.floor(clientY / 40) * 40}px`;
       document.addEventListener("click", (e) => {
-        // Retrieve class from clicked element
         let elementClass = e.target.classList;
-        if (elementClass[0] === "OreIron") {
-          Projection.remove();
-          e.target.innerHTML = `<i class="fa-solid fa-industry fa-2xl"></i>`;
-          e.target.classlist = "BuildingMine";
+        if (this.type === "mine") {
+          if (elementClass[0] === "OreIron") {
+            Projection.remove();
+            e.target.innerHTML = this.building;
+            e.target.classlist = "BuildingMine";
+          }
+        }
+        if (this.type === "conveyor") {
+          if (elementClass[0] === "Empty") {
+            Projection.remove();
+            e.target.innerHTML = this.building;
+            e.target.classlist = "BuildingConveyor";
+          }
+        }
+        if (this.type === "smelter") {
+          if (elementClass[0] === "Empty") {
+            Projection.remove();
+            e.target.innerHTML = this.building;
+            e.target.classlist = "BuildingSmelter";
+          }
         }
       });
     };
   }
-  place() {
-    123;
-  }
 }
 // ======================================================================
 
-function build() {
-  const MineBuilding = new Building("mine");
-  MineBuilding.select();
-}
-
-var rows = 20;
-var cols = 40;
-
-var grid = new Array(rows);
-
-var timer;
-var reproductionTime = 100;
-
-function initializeGrids() {
-  for (var i = 0; i < rows; i++) {
-    grid[i] = new Array(cols);
+function buildMine() {
+  if (!document.getElementById("Projection")) {
+    const MineBuilding = new Building("mine");
+    MineBuilding.select();
   }
 }
-
-function createTable() {
-  var gridContainer = document.getElementById("gridContainer");
-  var table = document.createElement("table");
-  table.setAttribute("cellspacing", "0");
-  table.setAttribute("cellpadding", "0");
-  table.setAttribute("id", "table");
-
-  for (var i = 0; i < rows; i++) {
-    var tr = document.createElement("tr");
-    for (var j = 0; j < cols; j++) {
-      var cell = document.createElement("td");
-      cell.setAttribute("id", i + "_" + j);
-      cell.setAttribute("class", "Empty");
-      //attribute class can (for now) have :
-      //    1. Empty
-      //		2. OreType
-      //		3. BuildingType
-      //    4. Conveyor
-      tr.appendChild(cell);
-    }
-    table.appendChild(tr);
+function buildConveyor() {
+  if (!document.getElementById("Projection")) {
+    const ConveyorBuilding = new Building("conveyor");
+    ConveyorBuilding.select();
   }
-  gridContainer.appendChild(table);
 }
-
-// Initialize
-function initialize() {
-  createTable();
-  initializeGrids();
-  const StarterIron = new Ore("iron");
+function buildSmelter() {
+  if (!document.getElementById("Projection")) {
+    const SmelterBuilding = new Building("smelter");
+    SmelterBuilding.select();
+  }
 }
-
-window.onload = initialize;

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/style.css" />
     <title>Factory game</title>
   </head>
+
   <body>
     <div id="gridContainer"></div>
     <button class="floating-buttons" id="guide">?</button>
@@ -19,14 +20,21 @@
         <i class="fa-solid fa-hammer" style="color: #ffffff"></i>
       </button>
       <div id="dropdown_menu">
-        <button class="building-button" onclick="build()">
+        <button class="building-button" onclick="buildMine()">
+          <i class="fa-solid fa-oil-well fa-xl"></i>
+        </button>
+
+        <button class="building-button" onclick="buildConveyor()">
+          <i class="fa-solid fa-arrow-right fa-2xl"></i>
+        </button>
+
+        <button class="building-button" onclick="buildSmelter()">
           <i class="fa-solid fa-industry fa-xl"></i>
         </button>
-        <button class="building-button"></button>
-        <button class="building-button"></button>
       </div>
     </div>
 
+    <!-- Scripts -->
     <script src="scripts/game.js"></script>
     <script src="scripts/functions.js"></script>
   </body>
