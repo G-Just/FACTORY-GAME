@@ -1,7 +1,0 @@
-Make the game operate based on the grid array =>
-1. Draw every object based on the number in the array 
-    0 = empty
-    1 = ore
-    2 = mine
-    3 = conveyor
-    4 = smelter
