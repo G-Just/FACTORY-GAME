@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://kit.fontawesome.com/2a25aaf532.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/game.css" />
+    <link rel="stylesheet" href="styles/main.css" />
     <title>Factory game</title>
   </head>
 
   <body>
+    <canvas id="canvas"></canvas>
+    <button id="build-button">Build</button>
+    <button id="spawn-ore-button" onclick="spawn()">Ore (test)</button>
     <!-- Scripts -->
-    <script src="scripts/game.js"></script>
-    <script src="scripts/functions.js"></script>
+    <script src="scripts/gameEngine.js"></script>
+    <script src="scripts/classes.js"></script>
   </body>
 </html>

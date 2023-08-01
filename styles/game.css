@@ -1,0 +1,15 @@
+#build-button {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  right: 30px;
+  top: 10px;
+}
+
+#spawn-ore-button {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 30px;
+  top: 10px;
+}
