@@ -6,9 +6,9 @@ class Ore {
 
     const AllCellsHTML = document.getElementsByClassName("Empty");
     var AllCells = Array.from(AllCellsHTML);
-    const SelectedPlace = AllCells[Math.floor(Math.random() * 629)];
-    SelectedPlace.innerHTML = `<i class="fa-solid fa-bolt fa-2xl"></i>`;
-    SelectedPlace.classList = "OreIron";
+    const buildedPlace = AllCells[Math.floor(Math.random() * 629)];
+    buildedPlace.innerHTML = `<i class="fa-solid fa-bolt fa-2xl"></i>`;
+    buildedPlace.classList = "OreIron";
   }
 }
 
@@ -27,7 +27,7 @@ class Building {
     }
   }
   //Used to place the building.
-  select() {
+  build() {
     const CreatingProjection = document.createElement("div");
     CreatingProjection.setAttribute("id", "Projection");
     CreatingProjection.innerHTML = this.building;
@@ -73,18 +73,18 @@ class Building {
 function buildMine() {
   if (!document.getElementById("Projection")) {
     const MineBuilding = new Building("mine");
-    MineBuilding.select();
+    MineBuilding.build();
   }
 }
 function buildConveyor() {
   if (!document.getElementById("Projection")) {
     const ConveyorBuilding = new Building("conveyor");
-    ConveyorBuilding.select();
+    ConveyorBuilding.build();
   }
 }
 function buildSmelter() {
   if (!document.getElementById("Projection")) {
     const SmelterBuilding = new Building("smelter");
-    SmelterBuilding.select();
+    SmelterBuilding.build();
   }
 }
