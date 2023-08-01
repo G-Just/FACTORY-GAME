@@ -5,26 +5,35 @@ const pen = canvas.getContext("2d");
 canvas.width = 1600;
 canvas.height = 896;
 
-// canvas background color
-pen.fillStyle = "rgb(221, 255, 201)";
-pen.fillRect(0, 0, 1600, 896);
-
 let grid = new Array();
 let columns = new Array();
 
-//Create a grid array with data inside (0 = empty)
-//Height of the array (rows)
-for (let j = 0; j < 29; j++) {
-  if (columns.length !== 0) {
-    grid.push(columns);
-  }
-  columns = [];
-  //Width of the array (columns)
-  for (let i = 0; i < 50; i++) {
-    columns.push(0);
+class Memory {
+  constructor() {
+    //Create a grid array with data inside (0 = empty)
+    //Height of the array (rows)
+    for (let j = 0; j < 29; j++) {
+      if (columns.length !== 0) {
+        grid.push(columns);
+      }
+      columns = [];
+      //Width of the array (columns)
+      for (let i = 0; i < 50; i++) {
+        columns.push(0);
+      }
+    }
+    // after this we have ( array => grid[row][column] )
   }
 }
-// after this we have ( array => grid[row][column] )
+
+class Background {
+  constructor() {}
+  draw() {
+    // canvas background color
+    pen.fillStyle = "rgb(221, 255, 201)";
+    pen.fillRect(0, 0, 1600, 896);
+  }
+}
 
 class Grid {
   constructor() {
@@ -37,7 +46,6 @@ class Grid {
   // Draws the grid based on grid array
   draw() {
     pen.strokeStyle = "black";
-
     grid.forEach((column) => {
       pen.moveTo(this.x, this.y);
       this.y += 32;
@@ -54,37 +62,39 @@ class Grid {
 class Ore {
   constructor(type) {
     this.type = type;
-    this.position = {
-      x: Math.floor(Math.random() * 50) * 32,
-      y: Math.floor(Math.random() * 27) * 32,
-    };
-    // Prevents the text from spawning above the canvas
-    if (this.position.y === 0) {
-      this.position.y += 32;
+  }
+  generate() {
+    this.generatePosition = grid[Math.floor(Math.random() * grid.length)][
+      Math.floor(Math.random() * grid[0].length)
+    ] = 1;
+  }
+  place() {
+    for (let row = 0; row < grid.length; row++) {
+      for (let column = 0; column < grid[row].length; column++) {
+        if (grid[row][column] === 1) {
+          pen.fillStyle = "black";
+          pen.font = "40px consolas";
+          pen.fillText("O", column * 32 + 5, row * 32 - 3);
+        }
+      }
     }
-    // Offset for the text to spawn in the center of the cell
-    this.xoffset = 5;
-    this.yoffset = 3;
-  }
-  spawn() {
-    pen.fillStyle = "black";
-    pen.font = "40px consolas";
-    pen.fillText(
-      "O",
-      this.position.x + this.xoffset,
-      this.position.y - this.yoffset
-    );
   }
 }
-
-function spawn() {
-  ironOre = new Ore("iron").spawn();
-}
-
-gameGrid = new Grid().draw();
 
 function animate() {
+  drawGrid.draw();
+  startingIronOre.place();
   window.requestAnimationFrame(animate);
 }
+
+//Initialization
+//Memory load in first always
+new Memory();
+
+const background = new Background();
+background.draw();
+const drawGrid = new Grid();
+const startingIronOre = new Ore("iron");
+startingIronOre.generate();
 
 animate();
