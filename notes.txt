@@ -1,10 +1,8 @@
 Make the game operate based on the grid array =>
-1. Draw every object based on the number in the array 
-    0 = empty
-    1 = ore
-    2 = mine
-    3 = conveyor
-    4 = smelter
+1. Draw every object based on the string in the array 
+    empty
+    iron* other ore
+    mine* other building
 
 2. Projection => rectangle collision system
 
