@@ -29,7 +29,7 @@ function background_grid() {
   x = 0;
   y = -32;
   // canvas grid drawing
-  pen.strokeStyle = "black";
+  pen.strokeStyle = "rgba(124, 138, 118)";
   grid.forEach((column) => {
     pen.moveTo(x, y);
     y += 32;
@@ -54,6 +54,32 @@ canvas.addEventListener("mousemove", (mouseMove) => {
   mouse.y = mouseMove.clientY;
 });
 
+// Event listener that gets every button click
+const mineButton = document.getElementById("mine");
+const conveyorButton = document.getElementById("conveyor");
+const smelterButton = document.getElementById("smelter");
+const removeButton = document.getElementById("remove");
+window.addEventListener("keydown", (event) => {
+  console.log(event.key);
+  switch (event.key) {
+    case "1":
+      mineButton.click();
+      break;
+    case "2":
+      conveyorButton.click();
+      break;
+    case "3":
+      smelterButton.click();
+      break;
+    case "4":
+      removeButton.click();
+      break;
+    case "r":
+      conveyorPathHandler();
+      break;
+  }
+});
+
 // function that draws everything on the board based on the grid cell parameters
 function draw() {
   for (let i = 0; i < grid.length; i++) {
@@ -61,20 +87,18 @@ function draw() {
     for (let j = 0; j < rows.length; j++) {
       switch (grid[i][j]) {
         case "empty":
-          pen.drawImage(grass, 31, 63, 31, 31, j * 32, i * 32, 31, 31);
+          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
           break;
         case "iron":
-          pen.drawImage(grass, 31, 63, 31, 31, j * 32, i * 32, 31, 31);
+          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
           pen.drawImage(iron, j * 32, i * 32);
-          // pen.fillStyle = "blue";
-          // pen.fillRect(j * 32, i * 32, 32, 32);
           break;
         case "mine":
           pen.fillStyle = "green";
           pen.fillRect(j * 32, i * 32, 32, 32);
           break;
         case "conveyor":
-          pen.drawImage(conveyor, 1, 1, 30, 30, j * 32 + 1, i * 32 + 1, 30, 30);
+          pen.drawImage(conveyor, 1, 1, 31, 31, j * 32 + 1, i * 32, 32, 32);
           break;
         case "smelter":
           pen.fillStyle = "yellow";

@@ -23,6 +23,15 @@ function buildEvent(type) {
             new Building(type, position).add();
           }
           break;
+        case "remove":
+          if (grid[y][x] !== "iron") {
+            if (grid[y][x] === "mine") {
+              grid[y][x] = "iron";
+            } else {
+              grid[y][x] = "empty";
+            }
+          }
+          break;
       }
       this.removeEventListener("click", build);
       buildSelected = false;
