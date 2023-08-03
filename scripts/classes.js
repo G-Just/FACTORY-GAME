@@ -3,8 +3,8 @@ class Ore {
     this.type = type;
     this.width = 32;
     this.height = 32;
-    let setY = Math.floor(Math.random() * 28);
-    let setX = Math.floor(Math.random() * 50);
+    let setY = Math.floor(Math.random() * 27);
+    let setX = Math.floor(Math.random() * 49);
     //if the random coordinate is taken generate another one
     while (grid[setY][setX] !== "empty") {
       setY = Math.floor(Math.random() * 28);
@@ -21,12 +21,13 @@ class Ore {
 }
 
 class Building {
-  constructor(type) {
+  constructor(type, position) {
     this.type = type;
     this.width = 32;
     this.height = 32;
+    this.position = position;
   }
   add() {
-    grid[y / this.height][x / this.width] = this.type;
+    grid[this.position.y][this.position.x] = this.type;
   }
 }

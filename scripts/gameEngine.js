@@ -74,8 +74,7 @@ function draw() {
           pen.fillRect(j * 32, i * 32, 32, 32);
           break;
         case "conveyor":
-          pen.fillStyle = "rgb(180,180,180)";
-          pen.fillRect(j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyor, 1, 1, 30, 30, j * 32 + 1, i * 32 + 1, 30, 30);
           break;
         case "smelter":
           pen.fillStyle = "yellow";
@@ -90,7 +89,7 @@ function draw() {
 const startingOre = new Ore("iron").add();
 
 // Animation loop
-var delta = 20; //delay between frames
+var delta = 100; //delay between frames
 var oldTime = 0;
 function animate(currentTime) {
   if (oldTime === 0) {
