@@ -1,7 +1,13 @@
-#build-button {
+#buttons {
   position: absolute;
-  width: 100px;
-  height: 100px;
   right: 30px;
   top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#build-button {
+  width: 100px;
+  height: 100px;
 }

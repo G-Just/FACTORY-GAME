@@ -10,10 +10,19 @@
 
   <body>
     <canvas id="canvas"></canvas>
-    <button id="build-button" onclick="build('mine');">Mine [1]</button>
+    <div id="buttons">
+      <button id="build-button" onclick="buildEvent('mine');">Mine [1]</button>
+      <button id="build-button" onclick="buildEvent('conveyor');">
+        Conveyor [2]
+      </button>
+      <button id="build-button" onclick="buildEvent('smelter');">
+        Smelter [3]
+      </button>
+    </div>
     <!-- Scripts -->
+    <script src="scripts/assetInit.js"></script>
+    <script src="scripts/building.js"></script>
     <script src="scripts/classes.js"></script>
     <script src="scripts/gameEngine.js"></script>
-    <script src="scripts/building.js"></script>
   </body>
 </html>

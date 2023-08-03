@@ -22,15 +22,12 @@ for (let j = 0; j < 29; j++) {
 }
 // after this we have ( array => grid[column:y][row:x] )
 
-//Function that draws the background and grid
+//Function that draws the grid
 function background_grid() {
   width = 32;
   height = 32;
   x = 0;
   y = -32;
-  // canvas background color
-  pen.fillStyle = "rgb(170, 255, 201)";
-  pen.fillRect(0, 0, 1600, 896);
   // canvas grid drawing
   pen.strokeStyle = "black";
   grid.forEach((column) => {
@@ -64,17 +61,20 @@ function draw() {
     for (let j = 0; j < rows.length; j++) {
       switch (grid[i][j]) {
         case "empty":
+          pen.drawImage(grass, 31, 63, 31, 31, j * 32, i * 32, 31, 31);
           break;
         case "iron":
-          pen.fillStyle = "blue";
-          pen.fillRect(j * 32, i * 32, 32, 32);
+          pen.drawImage(grass, 31, 63, 31, 31, j * 32, i * 32, 31, 31);
+          pen.drawImage(iron, j * 32, i * 32);
+          // pen.fillStyle = "blue";
+          // pen.fillRect(j * 32, i * 32, 32, 32);
           break;
         case "mine":
           pen.fillStyle = "green";
           pen.fillRect(j * 32, i * 32, 32, 32);
           break;
         case "conveyor":
-          pen.fillStyle = "rgb(30,30,30)";
+          pen.fillStyle = "rgb(180,180,180)";
           pen.fillRect(j * 32, i * 32, 32, 32);
           break;
         case "smelter":
@@ -106,5 +106,3 @@ function animate(currentTime) {
 
 // Starting animation loop
 requestAnimationFrame(animate);
-
-draw();
