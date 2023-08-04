@@ -62,7 +62,6 @@ const removeButton = document.getElementById("remove");
 let tooltip = document.getElementById("tooltip");
 window.addEventListener("keydown", (event) => {
   if (tooltip.style.display === "none") {
-    tooltip.style.display = "block";
     switch (event.key) {
       case "1":
         mineButton.click();
