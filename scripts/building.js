@@ -1,6 +1,7 @@
 let buildSelected = false;
 
 function buildEvent(type) {
+  tooltip = document.getElementById("tooltip");
   if (!buildSelected) {
     buildSelected = true;
     canvas.addEventListener("click", function build() {
@@ -10,21 +11,25 @@ function buildEvent(type) {
       switch (type) {
         case "mine":
           if (grid[y][x] === "iron") {
+            tooltip.style = "display: none";
             new Building(type, position).add();
+            break;
           }
-          break;
         case "conveyor":
           if (grid[y][x] === "empty") {
+            tooltip.style = "display: none";
             new Building(type, position).add();
           }
           break;
         case "smelter":
           if (grid[y][x] === "empty") {
+            tooltip.style = "display: none";
             new Building(type, position).add();
           }
           break;
         case "remove":
           if (grid[y][x] !== "iron") {
+            tooltip.style = "display: none";
             if (grid[y][x] === "mine") {
               grid[y][x] = "iron";
             } else {

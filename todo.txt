@@ -6,3 +6,4 @@
 
 #Figure out how to generate materials from a miner and how are they going to be drawn on top of belts
 
+!!!!! FIX A BUG WHERE U CAN CLICK MULTIPLE BUTTONS TO BUILD ANYTHING ANYWHERE

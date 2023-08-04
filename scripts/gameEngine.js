@@ -60,18 +60,24 @@ const conveyorButton = document.getElementById("conveyor");
 const smelterButton = document.getElementById("smelter");
 const removeButton = document.getElementById("remove");
 window.addEventListener("keydown", (event) => {
+  tooltip = document.getElementById("tooltip");
+  tooltip.style = "display:block";
   console.log(event.key);
   switch (event.key) {
     case "1":
+      tooltip.innerHTML = "Now building : Mine";
       mineButton.click();
       break;
     case "2":
+      tooltip.innerHTML = "Now building : Conveyor";
       conveyorButton.click();
       break;
     case "3":
+      tooltip.innerHTML = "Now building : Smelter";
       smelterButton.click();
       break;
     case "4":
+      tooltip.innerHTML = "Click to remove a building";
       removeButton.click();
       break;
     case "r":
