@@ -1,9 +1,8 @@
 #Figure out how to make a projection system for readability
     on select it triggers and draws an image on cursor incrementally on the grid, on click it disappears. 
-    Does not go into the grid array and works as a pseudo object 
+    Does not go into the grid array and works as a pseudo object
+    Changes colors from transparent gray -> green when place is valid
 
 #Make belt placement system with rotation and connection logic
 
 #Figure out how to generate materials from a miner and how are they going to be drawn on top of belts
-
-!!!!! FIX A BUG WHERE U CAN CLICK MULTIPLE BUTTONS TO BUILD ANYTHING ANYWHERE

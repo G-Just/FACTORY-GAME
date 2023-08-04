@@ -3,8 +3,9 @@ class Ore {
     this.type = type;
     this.width = 32;
     this.height = 32;
-    let setY = Math.floor(Math.random() * 27);
-    let setX = Math.floor(Math.random() * 49);
+    // generates random coordinates (cannot generate on the edge(border) )
+    let setY = Math.floor(Math.random() * 26) + 1;
+    let setX = Math.floor(Math.random() * 48) + 1;
     //if the random coordinate is taken generate another one
     while (grid[setY][setX] !== "empty") {
       setY = Math.floor(Math.random() * 28);

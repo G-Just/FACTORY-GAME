@@ -19,6 +19,5 @@
   transform: translate(-50%, 0);
   color: white;
   font-size: 20pt;
-  display: none;
   pointer-events: none;
 }
