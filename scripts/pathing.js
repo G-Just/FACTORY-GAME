@@ -1,2 +1,2 @@
-// this triggers on clicking [ r ] need to modify the rotation of the conveyor
+// this triggers on each conveyor placement and reforms them
 function conveyorPathHandler() {}

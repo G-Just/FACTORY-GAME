@@ -29,7 +29,7 @@ function background_grid() {
   x = 0;
   y = -32;
   // canvas grid drawing
-  pen.strokeStyle = "rgba(124, 138, 118)";
+  pen.strokeStyle = "rgba(30, 30, 30)";
   grid.forEach((column) => {
     pen.moveTo(x, y);
     y += 32;
@@ -96,15 +96,18 @@ function draw() {
           pen.drawImage(iron, j * 32, i * 32);
           break;
         case "mine":
+          // pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
+          // pen.drawImage(mine, j * 32 + 1, i * 32);
           pen.fillStyle = "green";
           pen.fillRect(j * 32, i * 32, 32, 32);
           break;
         case "conveyor":
-          pen.drawImage(conveyor, 1, 1, 31, 31, j * 32 + 1, i * 32, 32, 32);
+          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
+          pen.drawImage(conveyor, j * 32 + 1, i * 32);
           break;
         case "smelter":
-          pen.fillStyle = "yellow";
-          pen.fillRect(j * 32, i * 32, 32, 32);
+          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
+          pen.drawImage(smelter, j * 32 + 1, i * 32);
           break;
       }
     }

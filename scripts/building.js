@@ -1,5 +1,39 @@
+let img = document.getElementById("projection");
+
+function projection() {
+  x = Math.floor((mouse.x - 160) / 32) * 32;
+  y = Math.floor((mouse.y - 10) / 32) * 32;
+  img.style.left = `${x + 160}px`;
+  img.style.top = `${y + 10}px`;
+}
+
+function projectionRemove() {
+  canvas.removeEventListener("mousemove", projection);
+}
+
+function project(type) {
+  switch (type) {
+    case "mine":
+      // img.style.display = "block";
+      // img.setAttribute("src", "./art/smelter.png");
+      break;
+    case "conveyor":
+      img.style.display = "block";
+      img.setAttribute("src", "./art/conveyorBelt.png");
+      break;
+    case "smelter":
+      img.style.display = "block";
+      img.setAttribute("src", "./art/smelter.png");
+      break;
+    case "remove":
+      break;
+  }
+  canvas.addEventListener("mousemove", projection);
+}
+
 let buildSelected = false;
 function buildEvent(type) {
+  project(type);
   if (!buildSelected) {
     tooltip = document.getElementById("tooltip");
     tooltip.style.display = "block";
@@ -28,13 +62,15 @@ function buildEvent(type) {
             tooltip.style.display = "none";
             new Building(type, position).add();
             buildSelected = false;
-            break;
+            projectionRemove();
           }
+          break;
         case "conveyor":
           if (grid[y][x] === "empty") {
             tooltip.style.display = "none";
             new Building(type, position).add();
             buildSelected = false;
+            projectionRemove();
           }
           break;
         case "smelter":
@@ -42,6 +78,7 @@ function buildEvent(type) {
             tooltip.style.display = "none";
             new Building(type, position).add();
             buildSelected = false;
+            projectionRemove();
           }
           break;
         case "remove":
@@ -58,6 +95,8 @@ function buildEvent(type) {
           break;
       }
       this.removeEventListener("click", build);
+      tooltip.style.display = "none";
+      buildSelected = false;
     });
   }
 }

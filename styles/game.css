@@ -21,3 +21,8 @@
   font-size: 20pt;
   pointer-events: none;
 }
+
+#projection {
+  position: absolute;
+  pointer-events: none;
+}

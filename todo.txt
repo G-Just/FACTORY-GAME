@@ -1,8 +1,10 @@
 #Figure out how to make a projection system for readability
-    on select it triggers and draws an image on cursor incrementally on the grid, on click it disappears. 
-    Does not go into the grid array and works as a pseudo object
     Changes colors from transparent gray -> green when place is valid
+    [ R ] rotates the projection
+    Make a conveyor add a cardinal direction to the grid [conveyor N-S-W-E]
 
-#Make belt placement system with rotation and connection logic
+#Make belt placement system with rotation and connection logic:
+    belt pathing checks East -> South transforms into ES 
+    meaning it connects right to down replaces with correct belt shape
 
 #Figure out how to generate materials from a miner and how are they going to be drawn on top of belts
