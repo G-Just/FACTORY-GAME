@@ -96,10 +96,8 @@ function draw() {
           pen.drawImage(iron, j * 32, i * 32);
           break;
         case "mine":
-          // pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
-          // pen.drawImage(mine, j * 32 + 1, i * 32);
-          pen.fillStyle = "green";
-          pen.fillRect(j * 32, i * 32, 32, 32);
+          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
+          pen.drawImage(mine, j * 32 + 1, i * 32);
           break;
         case "conveyor":
           pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);

@@ -14,8 +14,8 @@ function projectionRemove() {
 function project(type) {
   switch (type) {
     case "mine":
-      // img.style.display = "block";
-      // img.setAttribute("src", "./art/smelter.png");
+      img.style.display = "block";
+      img.setAttribute("src", "./art/mine.png");
       break;
     case "conveyor":
       img.style.display = "block";
