@@ -19,5 +19,29 @@ conveyorS.setAttribute("src", "./art/ConveyorBeltS.png");
 var conveyorW = document.createElement("img");
 conveyorW.setAttribute("src", "./art/ConveyorBeltW.png");
 
+var conveyorNE = document.createElement("img");
+conveyorNE.setAttribute("src", "./art/ConveyorBeltNE.png");
+
+var conveyorNW = document.createElement("img");
+conveyorNW.setAttribute("src", "./art/ConveyorBeltNW.png");
+
+var conveyorEN = document.createElement("img");
+conveyorEN.setAttribute("src", "./art/ConveyorBeltEN.png");
+
+var conveyorES = document.createElement("img");
+conveyorES.setAttribute("src", "./art/ConveyorBeltES.png");
+
+var conveyorSE = document.createElement("img");
+conveyorSE.setAttribute("src", "./art/ConveyorBeltSE.png");
+
+var conveyorSW = document.createElement("img");
+conveyorSW.setAttribute("src", "./art/ConveyorBeltSW.png");
+
+var conveyorWN = document.createElement("img");
+conveyorWN.setAttribute("src", "./art/ConveyorBeltWN.png");
+
+var conveyorWS = document.createElement("img");
+conveyorWS.setAttribute("src", "./art/ConveyorBeltWS.png");
+
 var smelter = document.createElement("img");
 smelter.setAttribute("src", "./art/smelter.png");

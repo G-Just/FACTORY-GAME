@@ -142,6 +142,38 @@ function draw() {
           pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
           pen.drawImage(conveyorW, j * 32, i * 32);
           break;
+        case "conveyorEN":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorEN, j * 32, i * 32);
+          break;
+        case "conveyorES":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorES, j * 32, i * 32);
+          break;
+        case "conveyorNE":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorNE, j * 32, i * 32);
+          break;
+        case "conveyorNW":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorNW, j * 32, i * 32);
+          break;
+        case "conveyorSE":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorSE, j * 32, i * 32);
+          break;
+        case "conveyorSW":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorSW, j * 32, i * 32);
+          break;
+        case "conveyorWN":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorWN, j * 32, i * 32);
+          break;
+        case "conveyorWS":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorWS, j * 32, i * 32);
+          break;
         case "smelter":
           pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
           pen.drawImage(smelter, j * 32, i * 32);
@@ -162,6 +194,7 @@ function animate(currentTime) {
     oldTime = currentTime;
   }
   if (currentTime - oldTime >= delta) {
+    conveyorPathHandler();
     draw();
     background_grid();
     oldTime = currentTime;

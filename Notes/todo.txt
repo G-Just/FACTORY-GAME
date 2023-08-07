@@ -1,6 +1,8 @@
 #Figure out how to make a projection system for readability
     [NOT IMPORTANT] Changes colors from transparent gray -> green when place is valid
-    Esc key should remove the event listener, right now it only removes the label + projection 
+    [NOT IMPORTANT] Add an animation that rotates around the top part of the projection 
+        and swings based on the mouse movement
+    Esc key should remove the event listener, right now it only removes the label + projection
 
 #Make belt placement system with rotation and connection logic: [HARD AS FUCK]
     belt path checks example :  East -> South transforms into ES 
