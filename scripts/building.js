@@ -1,6 +1,6 @@
 let img = document.getElementById("projection");
 
-function projection() {
+function projectionCoordinates() {
   x = Math.floor((mouse.x - 160) / 32) * 32;
   y = Math.floor((mouse.y - 10) / 32) * 32;
   img.style.left = `${x + 160}px`;
@@ -8,6 +8,7 @@ function projection() {
 }
 
 function projectionRemove() {
+  img.style.display = "none";
   canvas.removeEventListener("mousemove", projection);
 }
 
@@ -19,7 +20,10 @@ function project(type) {
       break;
     case "conveyor":
       img.style.display = "block";
-      img.setAttribute("src", "./art/conveyorBelt.png");
+      img.setAttribute(
+        "src",
+        "./art/conveyorBelt" + directions[currentDirection] + ".png"
+      );
       break;
     case "smelter":
       img.style.display = "block";
@@ -28,7 +32,7 @@ function project(type) {
     case "remove":
       break;
   }
-  canvas.addEventListener("mousemove", projection);
+  canvas.addEventListener("mousemove", projectionCoordinates);
 }
 
 let buildSelected = false;
@@ -63,15 +67,20 @@ function buildEvent(type) {
             new Building(type, position).add();
             buildSelected = false;
             projectionRemove();
+          } else {
+            tooltip.style.display = "none";
+            projectionRemove();
           }
           break;
         case "conveyor":
           if (grid[y][x] === "empty") {
             tooltip.style.display = "none";
-            new Building(type, position).add();
+            new Building(type, position, directions[currentDirection]).add();
             buildSelected = false;
             projectionRemove();
           }
+          tooltip.style.display = "none";
+          projectionRemove();
           break;
         case "smelter":
           if (grid[y][x] === "empty") {
@@ -80,6 +89,8 @@ function buildEvent(type) {
             buildSelected = false;
             projectionRemove();
           }
+          tooltip.style.display = "none";
+          projectionRemove();
           break;
         case "remove":
           if (grid[y][x] !== "iron") {

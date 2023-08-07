@@ -22,13 +22,14 @@ class Ore {
 }
 
 class Building {
-  constructor(type, position) {
+  constructor(type, position, cardinalDirection = "") {
     this.type = type;
     this.width = 32;
     this.height = 32;
     this.position = position;
+    this.cardinalDirection = cardinalDirection;
   }
   add() {
-    grid[this.position.y][this.position.x] = this.type;
+    grid[this.position.y][this.position.x] = this.type + this.cardinalDirection;
   }
 }

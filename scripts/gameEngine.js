@@ -29,7 +29,7 @@ function background_grid() {
   x = 0;
   y = -32;
   // canvas grid drawing
-  pen.strokeStyle = "rgba(30, 30, 30)";
+  pen.strokeStyle = "rgba(30, 30, 30, 0.3)";
   grid.forEach((column) => {
     pen.moveTo(x, y);
     y += 32;
@@ -61,24 +61,51 @@ const smelterButton = document.getElementById("smelter");
 const removeButton = document.getElementById("remove");
 let tooltip = document.getElementById("tooltip");
 window.addEventListener("keydown", (event) => {
-  if (tooltip.style.display === "none") {
-    switch (event.key) {
-      case "1":
+  switch (event.key) {
+    case "1":
+      if (tooltip.style.display === "none") {
         mineButton.click();
-        break;
-      case "2":
+      }
+      break;
+    case "2":
+      if (tooltip.style.display === "none") {
         conveyorButton.click();
-        break;
-      case "3":
+      }
+      break;
+    case "3":
+      if (tooltip.style.display === "none") {
         smelterButton.click();
-        break;
-      case "4":
+      }
+      break;
+    case "4":
+      if (tooltip.style.display === "none") {
         removeButton.click();
-        break;
-      case "r":
-        conveyorPathHandler();
-        break;
-    }
+      }
+      break;
+    case "r":
+      //if conveyor is selected trigger the rotation
+      if (
+        img.src === "http://127.0.0.1:5500/art/conveyorBeltN.png" ||
+        img.src === "http://127.0.0.1:5500/art/conveyorBeltE.png" ||
+        img.src === "http://127.0.0.1:5500/art/conveyorBeltS.png" ||
+        img.src === "http://127.0.0.1:5500/art/conveyorBeltW.png"
+      ) {
+        if (currentDirection === 3) {
+          currentDirection = 0;
+        } else {
+          currentDirection++;
+        }
+        img.setAttribute(
+          "src",
+          "./art/conveyorBelt" + directions[currentDirection] + ".png"
+        );
+      }
+      break;
+    case "Escape":
+      // Esc button should remove the click listener form canvas in building.js (idk how)
+      tooltip.style.display = "none";
+      projectionRemove();
+      break;
   }
 });
 
@@ -89,23 +116,35 @@ function draw() {
     for (let j = 0; j < rows.length; j++) {
       switch (grid[i][j]) {
         case "empty":
-          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
           break;
         case "iron":
-          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
           pen.drawImage(iron, j * 32, i * 32);
           break;
         case "mine":
-          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
-          pen.drawImage(mine, j * 32 + 1, i * 32);
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(mine, j * 32, i * 32);
           break;
-        case "conveyor":
-          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
-          pen.drawImage(conveyor, j * 32 + 1, i * 32);
+        case "conveyorN":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorN, j * 32, i * 32);
+          break;
+        case "conveyorE":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorE, j * 32, i * 32);
+          break;
+        case "conveyorS":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorS, j * 32, i * 32);
+          break;
+        case "conveyorW":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(conveyorW, j * 32, i * 32);
           break;
         case "smelter":
-          pen.drawImage(grass, 31, 62, 31, 31, j * 32, i * 32, 31, 31);
-          pen.drawImage(smelter, j * 32 + 1, i * 32);
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(smelter, j * 32, i * 32);
           break;
       }
     }
@@ -123,8 +162,8 @@ function animate(currentTime) {
     oldTime = currentTime;
   }
   if (currentTime - oldTime >= delta) {
-    background_grid();
     draw();
+    background_grid();
     oldTime = currentTime;
   }
   window.requestAnimationFrame(animate);
