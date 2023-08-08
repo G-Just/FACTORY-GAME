@@ -45,3 +45,6 @@ conveyorWS.setAttribute("src", "./art/ConveyorBeltWS.png");
 
 var smelter = document.createElement("img");
 smelter.setAttribute("src", "./art/smelter.png");
+
+var ironResource = document.createElement("img");
+ironResource.setAttribute("src", "./art/ironResource.png");

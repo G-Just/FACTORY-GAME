@@ -1,5 +1,3 @@
-let img = document.getElementById("projection");
-
 function projectionCoordinates() {
   x = Math.floor((mouse.x - 160) / 32) * 32;
   y = Math.floor((mouse.y - 10) / 32) * 32;
@@ -35,7 +33,6 @@ function project(type) {
   canvas.addEventListener("mousemove", projectionCoordinates);
 }
 
-let buildSelected = false;
 function buildEvent(type) {
   project(type);
   if (!buildSelected) {

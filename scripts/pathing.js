@@ -1,6 +1,3 @@
-let directions = ["N", "E", "S", "W"];
-let currentDirection = 0;
-
 // this triggers with animate loop and reforms the conveyor path connecting them with curves
 function conveyorPathHandler() {
   for (let i = 0; i < grid.length; i++) {
@@ -149,6 +146,46 @@ function conveyorPathHandler() {
   }
 }
 
+function resourceGenerate(x, y) {
+  generationTimer++;
+  // generate a resource every X=25 frames || maybe used for upgrades later to increase speed of generation
+  if (generationTimer === 25) {
+    //right
+    if (
+      grid[y][x + 1] === "conveyorE" ||
+      grid[y][x + 1] === "conveyorEN" ||
+      grid[y][x + 1] === "conveyorES"
+    ) {
+      resources.push(new Resource("iron", x * 32 + 23, y * 32));
+    }
+    //left
+    if (
+      grid[y][x - 1] === "conveyorW" ||
+      grid[y][x - 1] === "conveyorWN" ||
+      grid[y][x - 1] === "conveyorWS"
+    ) {
+      resources.push(new Resource("iron", x * 32 - 23, y * 32));
+    }
+    //up
+    if (
+      grid[y - 1][x] === "conveyorN" ||
+      grid[y - 1][x] === "conveyorNE" ||
+      grid[y - 1][x] === "conveyorNW"
+    ) {
+      resources.push(new Resource("iron", x * 32, y * 32 - 23));
+    }
+    if (
+      grid[y + 1][x] === "conveyorS" ||
+      grid[y + 1][x] === "conveyorSE" ||
+      grid[y + 1][x] === "conveyorSW"
+    ) {
+      resources.push(new Resource("iron", x * 32, y * 32 + 23));
+    }
+    generationTimer = 0;
+  }
+}
+
+//TEMPORARY REMOVE ON FINAL BUILD
 function getGrid() {
   console.log(grid);
 }

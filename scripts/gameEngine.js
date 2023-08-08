@@ -1,12 +1,6 @@
-const canvas = document.querySelector("canvas");
-const pen = canvas.getContext("2d");
-
 // 32x32 grid = 50 columns | 28 rows
 canvas.width = 1600;
 canvas.height = 896;
-
-let grid = new Array();
-let columns = new Array();
 
 //Create a grid array with data inside (0 = empty)
 //Height of the array (rows)
@@ -41,13 +35,6 @@ function background_grid() {
     });
   });
 }
-
-// Mouse event variable
-const mouse = {
-  x: undefined,
-  y: undefined,
-};
-
 // Event listener that gets the mouse event variable values
 canvas.addEventListener("mousemove", (mouseMove) => {
   mouse.x = mouseMove.clientX;
@@ -55,11 +42,6 @@ canvas.addEventListener("mousemove", (mouseMove) => {
 });
 
 // Event listener that gets every button click
-const mineButton = document.getElementById("mine");
-const conveyorButton = document.getElementById("conveyor");
-const smelterButton = document.getElementById("smelter");
-const removeButton = document.getElementById("remove");
-let tooltip = document.getElementById("tooltip");
 window.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "1":
@@ -125,6 +107,7 @@ function draw() {
         case "mine":
           pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
           pen.drawImage(mine, j * 32, i * 32);
+          resourceGenerate(j, i);
           break;
         case "conveyorN":
           pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
@@ -197,6 +180,9 @@ function animate(currentTime) {
     conveyorPathHandler();
     draw();
     background_grid();
+    resources.forEach((resource) => {
+      resource.update();
+    });
     oldTime = currentTime;
   }
   window.requestAnimationFrame(animate);
@@ -204,3 +190,5 @@ function animate(currentTime) {
 
 // Starting animation loop
 requestAnimationFrame(animate);
+
+console.log(resources);

@@ -33,3 +33,23 @@ class Building {
     grid[this.position.y][this.position.x] = this.type + this.cardinalDirection;
   }
 }
+
+//TODO: Make a resource generation in the direction or multiple where the conveyor is connected to the mine
+class Resource {
+  constructor(type, x, y) {
+    this.type = type;
+    this.x = x;
+    this.y = y;
+    this.direction = { x: 1, y: 0 };
+  }
+  //draws the ore on the conveyor belt
+  draw() {
+    pen.drawImage(ironResource, this.x, this.y);
+  }
+  // updates the position of the ore
+  update() {
+    this.x += this.direction.x;
+    this.y += this.direction.y;
+    this.draw();
+  }
+}
