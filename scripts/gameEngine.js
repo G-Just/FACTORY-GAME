@@ -2,17 +2,21 @@
 canvas.width = 1600;
 canvas.height = 896;
 
-//Create a grid array with data inside (0 = empty)
-//Height of the array (rows)
-for (let j = 0; j < 29; j++) {
-  if (columns.length !== 0) {
-    grid.push(columns);
+if (grid.length === 0) {
+  //Create a grid array with data inside (0 = empty)
+  //Height of the array (rows)
+  for (let j = 0; j < 29; j++) {
+    if (columns.length !== 0) {
+      grid.push(columns);
+    }
+    columns = [];
+    //Width of the array (columns)
+    for (let i = 0; i < 50; i++) {
+      columns.push("empty");
+    }
   }
-  columns = [];
-  //Width of the array (columns)
-  for (let i = 0; i < 50; i++) {
-    columns.push("empty");
-  }
+  // Initializing staring classes
+  new Ore("iron").add();
 }
 // after this we have ( array => grid[column:y][row:x] )
 
@@ -166,9 +170,6 @@ function draw() {
   }
 }
 
-// Initializing staring classes
-const startingOre = new Ore("iron").add();
-
 // Animation loop
 var delta = 100; //delay between frames
 var oldTime = 0;
@@ -190,5 +191,3 @@ function animate(currentTime) {
 
 // Starting animation loop
 requestAnimationFrame(animate);
-
-console.log(resources);

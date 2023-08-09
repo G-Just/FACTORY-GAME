@@ -149,14 +149,16 @@ function conveyorPathHandler() {
 function resourceGenerate(x, y) {
   generationTimer++;
   // generate a resource every X=25 frames || maybe used for upgrades later to increase speed of generation
-  if (generationTimer === 25) {
+  if (generationTimer === generationRate) {
     //right
     if (
       grid[y][x + 1] === "conveyorE" ||
       grid[y][x + 1] === "conveyorEN" ||
       grid[y][x + 1] === "conveyorES"
     ) {
-      resources.push(new Resource("iron", x * 32 + 23, y * 32));
+      resources.push(
+        new Resource("iron", x * 32 + 0, y * 32, { x: 1, y: 0 }, conveyorSpeed)
+      );
     }
     //left
     if (
@@ -164,7 +166,9 @@ function resourceGenerate(x, y) {
       grid[y][x - 1] === "conveyorWN" ||
       grid[y][x - 1] === "conveyorWS"
     ) {
-      resources.push(new Resource("iron", x * 32 - 23, y * 32));
+      resources.push(
+        new Resource("iron", x * 32 - 0, y * 32, { x: -1, y: 0 }, conveyorSpeed)
+      );
     }
     //up
     if (
@@ -172,14 +176,18 @@ function resourceGenerate(x, y) {
       grid[y - 1][x] === "conveyorNE" ||
       grid[y - 1][x] === "conveyorNW"
     ) {
-      resources.push(new Resource("iron", x * 32, y * 32 - 23));
+      resources.push(
+        new Resource("iron", x * 32, y * 32 - 0, { x: 0, y: -1 }, conveyorSpeed)
+      );
     }
     if (
       grid[y + 1][x] === "conveyorS" ||
       grid[y + 1][x] === "conveyorSE" ||
       grid[y + 1][x] === "conveyorSW"
     ) {
-      resources.push(new Resource("iron", x * 32, y * 32 + 23));
+      resources.push(
+        new Resource("iron", x * 32, y * 32 + 0, { x: 0, y: 1 }, conveyorSpeed)
+      );
     }
     generationTimer = 0;
   }

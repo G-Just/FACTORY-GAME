@@ -26,3 +26,14 @@
   position: absolute;
   pointer-events: none;
 }
+
+#stats {
+  position: absolute;
+  left: 30px;
+  top: 10px;
+}
+#xp {
+  color: white;
+  font-size: 20pt;
+  font-weight: 900;
+}

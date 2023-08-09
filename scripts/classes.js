@@ -35,11 +35,12 @@ class Building {
 }
 
 class Resource {
-  constructor(type, x, y) {
+  constructor(type, x, y, direction, speed) {
     this.type = type;
-    this.x = x;
-    this.y = y;
-    this.direction = { x: 0, y: 0 }; //1(speed) or 0(no speed) *speed can be increased
+    this.x = x; // in pixels
+    this.y = y; // in pixels
+    this.direction = direction;
+    this.speed = speed;
   }
   //draws the ore on the conveyor belt
   draw() {
@@ -47,10 +48,68 @@ class Resource {
   }
   // updates the position of the ore
   update() {
-    x = Math.floor(this.x / 32); //cell x in grid
-    y = Math.floor(this.y / 32); //cell y in grid
-    this.x += this.direction.x;
-    this.y += this.direction.y;
+    const LuX = Math.floor(this.x / 32);
+    const TuY = Math.floor(this.y / 32);
+    const RuX = Math.floor((this.x + 31) / 32);
+    const BuY = Math.floor((this.y + 31) / 32);
+    //right
+    if (
+      (grid[TuY][LuX] === "conveyorE" && grid[BuY][LuX] === "conveyorE") ||
+      (grid[TuY][LuX] === "conveyorNE" && grid[BuY][LuX] === "conveyorNE") ||
+      (grid[TuY][LuX] === "conveyorSE" && grid[BuY][LuX] === "conveyorSE")
+    ) {
+      this.direction.x = 1;
+      this.direction.y = 0;
+    }
+    //left
+    if (
+      (grid[TuY][RuX] === "conveyorW" && grid[BuY][RuX] === "conveyorW") ||
+      (grid[TuY][RuX] === "conveyorNW" && grid[BuY][RuX] === "conveyorNW") ||
+      (grid[TuY][RuX] === "conveyorSW" && grid[BuY][RuX] === "conveyorSW")
+    ) {
+      this.direction.x = -1;
+      this.direction.y = 0;
+    }
+    //up
+    if (
+      (grid[BuY][RuX] === "conveyorN" && grid[BuY][LuX] === "conveyorE") ||
+      (grid[BuY][RuX] === "conveyorEN" && grid[BuY][LuX] === "conveyorEN") ||
+      (grid[BuY][RuX] === "conveyorWN" && grid[BuY][LuX] === "conveyorWN")
+    ) {
+      this.direction.x = 0;
+      this.direction.y = -1;
+    }
+    //down
+    if (
+      (grid[TuY][RuX] === "conveyorS" && grid[TuY][LuX] === "conveyorE") ||
+      (grid[TuY][RuX] === "conveyorES" && grid[TuY][LuX] === "conveyorES") ||
+      (grid[TuY][RuX] === "conveyorWS" && grid[TuY][LuX] === "conveyorWS")
+    ) {
+      this.direction.x = 0;
+      this.direction.y = 1;
+    }
+    if (
+      grid[TuY][RuX] === "empty" &&
+      grid[BuY][RuX] === "empty" &&
+      grid[TuY][LuX] === "empty" &&
+      grid[BuY][LuX] === "empty"
+    ) {
+      this.direction.x = 0;
+      this.direction.y = 0;
+    }
+    if (
+      grid[TuY][RuX] === "smelter" &&
+      grid[BuY][RuX] === "smelter" &&
+      grid[TuY][LuX] === "smelter" &&
+      grid[BuY][LuX] === "smelter"
+    ) {
+      delete resources[iterCount];
+      iterCount++;
+      xp++;
+      xpLabel.innerHTML = `XP : ${xp}`;
+    }
+    this.x += this.direction.x * this.speed;
+    this.y += this.direction.y * this.speed;
     this.draw();
   }
 }
