@@ -1,3 +1,8 @@
+let grid = JSON.parse(localStorage.getItem("State")) || new Array();
+let columns = new Array();
+let xp = JSON.parse(localStorage.getItem("Xp")) || 0;
+xpLabel.innerHTML = `XP : ${xp}`;
+
 // 32x32 grid = 50 columns | 28 rows
 canvas.width = 1600;
 canvas.height = 896;
@@ -39,61 +44,66 @@ function background_grid() {
     });
   });
 }
-// Event listener that gets the mouse event variable values
-canvas.addEventListener("mousemove", (mouseMove) => {
-  mouse.x = mouseMove.clientX;
-  mouse.y = mouseMove.clientY;
-});
 
-// Event listener that gets every button click
-window.addEventListener("keydown", (event) => {
-  switch (event.key) {
-    case "1":
-      if (tooltip.style.display === "none") {
-        mineButton.click();
-      }
-      break;
-    case "2":
-      if (tooltip.style.display === "none") {
-        conveyorButton.click();
-      }
-      break;
-    case "3":
-      if (tooltip.style.display === "none") {
-        smelterButton.click();
-      }
-      break;
-    case "4":
-      if (tooltip.style.display === "none") {
-        removeButton.click();
-      }
-      break;
-    case "r":
-      //if conveyor is selected trigger the rotation
-      if (
-        img.src === "http://127.0.0.1:5500/art/conveyorBeltN.png" ||
-        img.src === "http://127.0.0.1:5500/art/conveyorBeltE.png" ||
-        img.src === "http://127.0.0.1:5500/art/conveyorBeltS.png" ||
-        img.src === "http://127.0.0.1:5500/art/conveyorBeltW.png"
-      ) {
-        if (currentDirection === 3) {
-          currentDirection = 0;
-        } else {
-          currentDirection++;
-        }
-        img.setAttribute(
-          "src",
-          "./art/conveyorBelt" + directions[currentDirection] + ".png"
-        );
-      }
-      break;
-    case "Escape": //FIXME: escape does not remove the event listener
-      // Esc button should remove the click listener form canvas in building.js (idk how)
-      tooltip.style.display = "none";
-      projectionRemove();
-      break;
+//function that upon calling will generate a resource based on the miners location
+function resourceGenerate(x, y) {
+  generationTimer++;
+  // generate a resource every X=25 frames || maybe used for upgrades later to increase speed of generation
+  if (generationTimer === generationRate) {
+    //right
+    if (
+      grid[y][x + 1] === "conveyorE" ||
+      grid[y][x + 1] === "conveyorEN" ||
+      grid[y][x + 1] === "conveyorES"
+    ) {
+      resources.push(
+        new Resource("iron", x * 32 + 19, y * 32, { x: 1, y: 0 }, conveyorSpeed)
+      );
+    }
+    //left
+    if (
+      grid[y][x - 1] === "conveyorW" ||
+      grid[y][x - 1] === "conveyorWN" ||
+      grid[y][x - 1] === "conveyorWS"
+    ) {
+      resources.push(
+        new Resource(
+          "iron",
+          x * 32 - 19,
+          y * 32,
+          { x: -1, y: 0 },
+          conveyorSpeed
+        )
+      );
+    }
+    //up
+    if (
+      grid[y - 1][x] === "conveyorN" ||
+      grid[y - 1][x] === "conveyorNE" ||
+      grid[y - 1][x] === "conveyorNW"
+    ) {
+      resources.push(
+        new Resource(
+          "iron",
+          x * 32,
+          y * 32 - 19,
+          { x: 0, y: -1 },
+          conveyorSpeed
+        )
+      );
+    }
+    if (
+      grid[y + 1][x] === "conveyorS" ||
+      grid[y + 1][x] === "conveyorSE" ||
+      grid[y + 1][x] === "conveyorSW"
+    ) {
+      resources.push(
+        new Resource("iron", x * 32, y * 32 + 19, { x: 0, y: 1 }, conveyorSpeed)
+      );
+    }
+    generationTimer = 0;
   }
-});
+}
 
 // function that draws everything on the board based on the grid cell parameters
 function draw() {
@@ -170,6 +180,12 @@ function draw() {
   }
 }
 
+function objectCleanUp(obj) {
+  result = obj.remove ? false : true;
+  delete obj;
+  return result;
+}
+
 // Animation loop
 var delta = 100; //delay between frames
 var oldTime = 0;
@@ -184,6 +200,8 @@ function animate(currentTime) {
     resources.forEach((resource) => {
       resource.update();
     });
+    resources = resources.filter(objectCleanUp);
+    console.log(resources);
     oldTime = currentTime;
   }
   window.requestAnimationFrame(animate);

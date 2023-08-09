@@ -1,3 +1,4 @@
+//art
 var iron = document.createElement("img");
 iron.setAttribute("src", "./art/ironOre.png");
 
@@ -48,3 +49,12 @@ smelter.setAttribute("src", "./art/smelter.png");
 
 var ironResource = document.createElement("img");
 ironResource.setAttribute("src", "./art/ironResource.png");
+
+//buttons
+const mineButton = document.getElementById("mine");
+const conveyorButton = document.getElementById("conveyor");
+const smelterButton = document.getElementById("smelter");
+const removeButton = document.getElementById("remove");
+
+//tooltip
+let tooltip = document.getElementById("tooltip");

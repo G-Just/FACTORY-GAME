@@ -1,3 +1,6 @@
+let iterCount = 0;
+let resources = [];
+
 class Ore {
   constructor(type) {
     this.type = type;
@@ -41,6 +44,7 @@ class Resource {
     this.y = y; // in pixels
     this.direction = direction;
     this.speed = speed;
+    this.remove = false;
   }
   //draws the ore on the conveyor belt
   draw() {
@@ -48,8 +52,8 @@ class Resource {
   }
   // updates the position of the ore
   update() {
-    const LuX = Math.floor(this.x / 32);
-    const TuY = Math.floor(this.y / 32);
+    const LuX = Math.floor((this.x + 1) / 32);
+    const TuY = Math.floor((this.y + 1) / 32);
     const RuX = Math.floor((this.x + 31) / 32);
     const BuY = Math.floor((this.y + 31) / 32);
     //right
@@ -97,16 +101,20 @@ class Resource {
       this.direction.x = 0;
       this.direction.y = 0;
     }
+    //if it enters the smelter mark it to be removed from the array and add xp
     if (
-      grid[TuY][RuX] === "smelter" &&
-      grid[BuY][RuX] === "smelter" &&
-      grid[TuY][LuX] === "smelter" &&
-      grid[BuY][LuX] === "smelter"
+      grid[Math.floor((this.y + 20) / 32)][Math.floor((this.x + 20) / 32)] ===
+        "smelter" &&
+      grid[Math.floor((this.y + 20) / 32)][Math.floor((this.x + 20) / 32)] ===
+        "smelter" &&
+      grid[Math.floor((this.y + 20) / 32)][Math.floor((this.x + 20) / 32)] ===
+        "smelter" &&
+      grid[Math.floor((this.y + 20) / 32)][Math.floor((this.x + 20) / 32)] ===
+        "smelter"
     ) {
-      delete resources[iterCount];
-      iterCount++;
-      xp++;
+      xp += xpGain;
       xpLabel.innerHTML = `XP : ${xp}`;
+      this.remove = true;
     }
     this.x += this.direction.x * this.speed;
     this.y += this.direction.y * this.speed;
