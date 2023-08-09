@@ -6,7 +6,6 @@ canvas.addEventListener("mousemove", (mouseMove) => {
 
 // Event listener that gets every button click
 window.addEventListener("keydown", (event) => {
-  console.log(event.key);
   switch (event.key) {
     case "1":
       if (tooltip.style.display === "none") {

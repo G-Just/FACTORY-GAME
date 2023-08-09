@@ -1,3 +1,6 @@
+#Make the word bigger and make the camera able to pan around it
+Zooming in + out?
+
 #Projection system
 Changes colors from transparent gray -> green when place is valid
 Add an animation that rotates around the top part of the projection and swings based on the mouse movement

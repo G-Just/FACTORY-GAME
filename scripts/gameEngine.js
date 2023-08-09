@@ -208,3 +208,7 @@ function animate(currentTime) {
 
 // Starting animation loop
 requestAnimationFrame(animate);
+
+function log() {
+  console.log(grid);
+}
