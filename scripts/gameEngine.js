@@ -1,7 +1,9 @@
 let grid = JSON.parse(localStorage.getItem("State")) || new Array();
 let columns = new Array();
-let xp = JSON.parse(localStorage.getItem("Xp")) || 0;
-xpLabel.innerHTML = `XP : ${xp}`;
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 // 32x32 grid = 50 columns | 28 rows
 canvas.width = 1600;
@@ -201,6 +203,7 @@ function animate(currentTime) {
       resource.update();
     });
     resources = resources.filter(objectCleanUp);
+    xpLabel.innerHTML = `$${numberWithCommas(xp)}`;
     oldTime = currentTime;
   }
   window.requestAnimationFrame(animate);

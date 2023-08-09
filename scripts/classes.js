@@ -100,6 +100,7 @@ class Resource {
     ) {
       this.direction.x = 0;
       this.direction.y = 0;
+      this.remove = true;
     }
     //if it enters the smelter mark it to be removed from the array and add xp
     if (
@@ -113,7 +114,6 @@ class Resource {
         "smelter"
     ) {
       xp += xpGain;
-      xpLabel.innerHTML = `XP : ${xp}`;
       this.remove = true;
     }
     this.x += this.direction.x * this.speed;

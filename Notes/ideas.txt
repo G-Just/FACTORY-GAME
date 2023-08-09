@@ -20,6 +20,6 @@ Figure out a way to make the art better
 3.Upgrade conveyor belts to transport faster
 
 @Economy
-1.Make buildings cost xp = game economy 
+1.Make buildings cost xp = game economy -> DONE 
 2.Introduce more buildings (smelter outputs something??)
 

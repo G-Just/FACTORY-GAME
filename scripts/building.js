@@ -34,6 +34,23 @@ function project(type) {
 }
 
 function buildEvent(type) {
+  switch (type) {
+    case "mine":
+      if (xp < 5) {
+        return;
+      }
+      break;
+    case "conveyor":
+      if (xp < 1) {
+        return;
+      }
+      break;
+    case "smelter":
+      if (xp < 3) {
+        return;
+      }
+      break;
+  }
   project(type);
   if (!buildSelected) {
     tooltip = document.getElementById("tooltip");
@@ -61,6 +78,7 @@ function buildEvent(type) {
         case "mine":
           if (grid[y][x] === "iron") {
             tooltip.style.display = "none";
+            xp -= 5;
             new Building(type, position).add();
             buildSelected = false;
             projectionRemove();
@@ -72,6 +90,7 @@ function buildEvent(type) {
         case "conveyor":
           if (grid[y][x] === "empty") {
             tooltip.style.display = "none";
+            xp -= 1;
             new Building(type, position, directions[currentDirection]).add();
             buildSelected = false;
             projectionRemove();
@@ -82,6 +101,7 @@ function buildEvent(type) {
         case "smelter":
           if (grid[y][x] === "empty") {
             tooltip.style.display = "none";
+            xp -= 3;
             new Building(type, position).add();
             buildSelected = false;
             projectionRemove();
@@ -90,15 +110,39 @@ function buildEvent(type) {
           projectionRemove();
           break;
         case "remove":
-          if (grid[y][x] !== "iron") {
-            tooltip.style.display = "none";
-            if (grid[y][x] === "mine") {
+          switch (grid[y][x]) {
+            case "mine":
+              tooltip.style.display = "none";
+              xp += 5;
               grid[y][x] = "iron";
               buildSelected = false;
-            } else {
+              projectionRemove();
+              break;
+            case "conveyorE":
+            case "conveyorEN":
+            case "conveyorES":
+            case "conveyorN":
+            case "conveyorNE":
+            case "conveyorNW":
+            case "conveyorS":
+            case "conveyorSE":
+            case "conveyorSW":
+            case "conveyorW":
+            case "conveyorWN":
+            case "conveyorWS":
+              tooltip.style.display = "none";
+              xp += 1;
               grid[y][x] = "empty";
               buildSelected = false;
-            }
+              projectionRemove();
+              break;
+            case "smelter":
+              tooltip.style.display = "none";
+              xp += 3;
+              grid[y][x] = "empty";
+              buildSelected = false;
+              projectionRemove();
+              break;
           }
           break;
       }

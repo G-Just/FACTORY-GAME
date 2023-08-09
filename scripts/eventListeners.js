@@ -8,18 +8,24 @@ canvas.addEventListener("mousemove", (mouseMove) => {
 window.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "1":
-      if (tooltip.style.display === "none") {
-        mineButton.click();
+      if (xp >= 5) {
+        if (tooltip.style.display === "none") {
+          mineButton.click();
+        }
       }
       break;
     case "2":
-      if (tooltip.style.display === "none") {
-        conveyorButton.click();
+      if (xp >= 1) {
+        if (tooltip.style.display === "none") {
+          conveyorButton.click();
+        }
       }
       break;
     case "3":
-      if (tooltip.style.display === "none") {
-        smelterButton.click();
+      if (xp >= 3) {
+        if (tooltip.style.display === "none") {
+          smelterButton.click();
+        }
       }
       break;
     case "4":
