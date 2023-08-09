@@ -201,7 +201,6 @@ function animate(currentTime) {
       resource.update();
     });
     resources = resources.filter(objectCleanUp);
-    console.log(resources);
     oldTime = currentTime;
   }
   window.requestAnimationFrame(animate);

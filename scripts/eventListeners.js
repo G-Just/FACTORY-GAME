@@ -6,6 +6,7 @@ canvas.addEventListener("mousemove", (mouseMove) => {
 
 // Event listener that gets every button click
 window.addEventListener("keydown", (event) => {
+  console.log(event.key);
   switch (event.key) {
     case "1":
       if (tooltip.style.display === "none") {
@@ -28,6 +29,7 @@ window.addEventListener("keydown", (event) => {
       }
       break;
     case "r":
+    case "R":
       //if conveyor is selected trigger the rotation
       if (
         img.src === "http://127.0.0.1:5500/art/conveyorBeltN.png" ||
