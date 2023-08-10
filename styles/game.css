@@ -53,3 +53,42 @@ hr {
   font-size: 16pt;
   margin: 10px;
 }
+
+#upgrade-window {
+  display: none; /* TODO: REMOVE THIS WHEN HE BUTTON IS CLICKED */
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+#upgrade-window > h1 {
+  margin: 0;
+}
+
+#upgrade-window > hr {
+  margin: 20px 0;
+}
+
+#upgrade-content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.upgrades {
+  display: flex;
+  gap: 10px;
+  outline: 5px solid white;
+  padding: 10px;
+}
+
+.upgrades > button {
+  width: 100px;
+  height: 100px;
+}
