@@ -50,7 +50,13 @@
         Log grid for debugging
       </button>
     </div>
-    <div id="upgrade-window">
+    <!-- UPGRADE BUTTONS -->
+    <div id="upgrade-button">
+      <button id="upgrade" onclick="openUpgradeWindow()">Upgrades</button>
+    </div>
+    <!-- UPGRADE WINDOW -->
+    <div style="display: none" id="upgrade-window">
+      <button id="exit-upgrades" onclick="closeUpgradeWindow()">X</button>
       <h1>Upgrades</h1>
       <hr />
       <div id="upgrade-content">
@@ -80,5 +86,6 @@
     <script src="scripts/pathing.js"></script>
     <script src="scripts/gameEngine.js"></script>
     <script src="scripts/saving.js"></script>
+    <script src="scripts/helperFunctions.js"></script>
   </body>
 </html>

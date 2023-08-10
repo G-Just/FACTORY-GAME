@@ -11,7 +11,7 @@ setInterval(() => {
 function reset() {
   paused = true;
   const confirmation = confirm(
-    "================== Are you sure? ================== \n Note: this will remove all the items currently on conveyor belts"
+    "Are you sure? Note: all the progress will be lost"
   );
   if (confirmation) {
     localStorage.clear();
