@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/game.css" />
     <link rel="stylesheet" href="styles/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Luckiest Guy"
+      rel="stylesheet"
+    />
     <title>Factory game</title>
   </head>
 
   <body>
+    <img id="background" src="art/background.png" alt="background" />
     <!-- PSEUDO ELEMENTS -->
     <h1 id="tooltip" style="display: none"></h1>
     <img id="projection" src="" alt="" style="display: none" />
@@ -23,27 +28,27 @@
     </div>
     <div id="buttons">
       <button class="build-button" id="mine" onclick="buildEvent('mine');">
-        <p>Mine [1]</p>
-        <p>$5</p>
+        <p>Mine</p>
+        <p class="price">$5</p>
       </button>
       <button
         class="build-button"
         id="conveyor"
         onclick="buildEvent('conveyor');"
       >
-        <p>Conveyor [2]</p>
-        <p>$1</p>
+        <p>Conveyor</p>
+        <p class="price">$1</p>
       </button>
       <button
         class="build-button"
         id="smelter"
         onclick="buildEvent('smelter');"
       >
-        <p>Smelter [3]</p>
-        <p>$3</p>
+        <p>Smelter</p>
+        <p class="price">$3</p>
       </button>
       <button class="build-button" id="remove" onclick="buildEvent('remove');">
-        Remove [4]
+        Remove
       </button>
       <button class="build-button" id="Reset" onclick="reset();">Reset</button>
       <button class="build-button" id="Reset" onclick="log();">
@@ -59,17 +64,20 @@
       <button id="exit-upgrades" onclick="closeUpgradeWindow()">X</button>
       <h1>Upgrades</h1>
       <hr />
+      <h2>Quality upgrades</h2>
       <div id="upgrade-content">
         <div class="upgrades" id="quality-upgrades">
-          <button>Upgrade 1</button>
-          <button>Upgrade 2</button>
-          <button>Upgrade 3</button>
+          <button>Miner speed</button>
+          <button>Conveyor speed</button>
+          <button>Ore value increase</button>
         </div>
+        <h2>Ore deposits</h2>
         <div class="upgrades" id="qantity-upgrades">
-          <button>Upgrade 1</button>
-          <button>Upgrade 2</button>
-          <button>Upgrade 3</button>
+          <button>Generate additional iron deposit</button>
+          <button>Generate additional platinum deposit</button>
+          <button>Generate additional gold deposit</button>
         </div>
+        <h2>Special upgrades</h2>
         <div class="upgrades" id="special-upgrades">
           <button>Upgrade 1</button>
           <button>Upgrade 2</button>
@@ -78,6 +86,7 @@
       </div>
     </div>
     <!-- Scripts -->
+    <script src="scripts/upgrades.js"></script>
     <script src="scripts/variables.js"></script>
     <script src="scripts/assetInit.js"></script>
     <script src="scripts/classes.js"></script>

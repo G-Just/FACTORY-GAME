@@ -1,10 +1,30 @@
+body {
+  margin: 10px 160px;
+  background-color: rgb(20, 20, 20);
+}
+
+#background {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+  filter: blur(5px);
+}
+
+canvas {
+  outline: 5px solid black;
+}
+
 #buttons {
   position: absolute;
   right: 30px;
-  top: 10px;
+  top: 15px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 
 #upgrade-button {
@@ -16,13 +36,55 @@
   gap: 20px;
 }
 
+.price {
+  color: white;
+  font-size: 20pt;
+  position: absolute;
+  z-index: 1;
+  bottom: -50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  text-shadow: 3px 3px black;
+}
+
 .build-button,
 #upgrade {
+  font-size: 12pt;
+  cursor: pointer;
+  background-color: grey;
   width: 100px;
   height: 100px;
+  position: relative;
+  border-radius: 20px;
+}
+
+.build-button:hover,
+#upgrade:hover {
+  background-color: lightsalmon;
+}
+
+.build-button:focus,
+#upgrade:focus {
+  background-color: lightsalmon;
+  outline: none;
+}
+
+.build-button::after,
+#upgrade::after {
+  content: "";
+  position: absolute;
+  width: 107px;
+  height: 107px;
+  border: 10px solid black;
+  border-radius: 20px;
+  top: -6px;
+  left: -6px;
+  transform: rotate(7deg);
 }
 
 #tooltip {
+  letter-spacing: 5px;
+  text-shadow: 3px 3px black;
   position: absolute;
   top: 10%;
   left: 50%;
@@ -45,6 +107,7 @@
   border: 1px solid white;
   border-radius: 10px;
   padding: 10px;
+  background-color: rgba(30, 30, 30, 0.8);
 }
 #xp {
   color: white;
@@ -76,9 +139,25 @@ hr {
   color: white;
 }
 
+#upgrade-window > h1 {
+  margin: 0;
+  text-shadow: 3px 3px black;
+  color: white;
+  font-size: 30pt;
+  letter-spacing: 10px;
+}
+
+#upgrade-window h2 {
+  margin: 10px;
+  text-shadow: 3px 3px black;
+  color: white;
+  font-size: 16pt;
+  letter-spacing: 5px;
+}
+
 #exit-upgrades {
   position: absolute;
-  top: 0;
+  top: 5px;
   right: 5px;
   background-color: transparent;
   border: none;
@@ -104,7 +183,6 @@ hr {
 #upgrade-content {
   display: flex;
   flex-direction: column;
-  gap: 50px;
 }
 
 .upgrades {
