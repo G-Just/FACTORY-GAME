@@ -1,0 +1,71 @@
+.base {
+    width: 40px;
+    height: 510px;
+    margin-left: 800px;
+    margin-top: 300px;
+    background-color: sienna
+}
+
+.play-option, .info-option, .guide-option, .settings-option, .exit-option {
+    height: 50px;
+    margin-left: 840px;
+    position: relative;
+    background-color: green;
+}
+.play-option {
+    width: 175px;
+    margin-top: -495px;
+}
+.info-option {
+    width: 175px;
+    margin-top: 50px;
+}
+.guide-option {
+    width: 200px;
+    margin-top: 50px;
+}
+.settings-option {
+    width: 250px;
+    margin-top: 50px;
+}
+.exit-option {
+    width: 175px;
+    margin-top: 50px;
+}
+
+.play-arrow, .info-arrow, .guide-arrow, .settings-arrow, .exit-arrow {
+    width: 36px;
+    height: 36px;
+    margin-top: -43px;
+    rotate: -45deg;
+    background-color: green
+}
+.base-arrow {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 6px;
+    rotate: -45deg;
+    background-color: sienna
+}
+.play-arrow {
+    margin-left: 997px;
+}
+.info-arrow {
+    margin-left: 997px;
+}
+.guide-arrow {
+    margin-left: 1023px;
+}
+.settings-arrow {
+    margin-left: 1072px;
+}
+.exit-arrow {
+    margin-left: 997px;
+}
+
+
+p {
+    text-align: center;
+}
