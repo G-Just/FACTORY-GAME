@@ -206,6 +206,9 @@ function animate(currentTime) {
     xpLabel.innerHTML = `$${numberWithCommas(xp)}`;
     oldTime = currentTime;
   }
+  mineCostLabel.innerText = `$${mineCost}`;
+  conveyorCostLabel.innerText = `$${conveyorCost}`;
+  smelterCostLabel.innerText = `$${smelterCost}`;
   window.requestAnimationFrame(animate);
 }
 

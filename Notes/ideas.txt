@@ -23,3 +23,5 @@ Figure out a way to make the art better
 1.Make buildings cost xp = game economy -> DONE 
 2.Introduce more buildings (smelter outputs something??)
 
+#Sounds
+Add game event sounds like gained money etc.

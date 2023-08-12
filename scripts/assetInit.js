@@ -50,6 +50,8 @@ smelter.setAttribute("src", "./art/smelter.png");
 var ironResource = document.createElement("img");
 ironResource.setAttribute("src", "./art/ironResource.png");
 
+//sounds
+
 //buttons
 const mineButton = document.getElementById("mine");
 const conveyorButton = document.getElementById("conveyor");

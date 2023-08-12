@@ -5,6 +5,7 @@ setInterval(() => {
     localStorage.clear();
     localStorage.setItem("State", JSON.stringify(grid));
     localStorage.setItem("Xp", JSON.stringify(xp));
+    localStorage.setItem("SmelterCost", JSON.stringify(smelterCost));
   }
 }, 500);
 

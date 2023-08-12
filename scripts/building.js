@@ -39,20 +39,34 @@ function project(type) {
 }
 
 function buildEvent(type) {
+  tooltip = document.getElementById("tooltip");
+  tooltip.style.display = "block";
   //case looks if user has enough xp and disables the building event if not
   switch (type) {
     case "mine":
-      if (xp < 5) {
+      if (xp < mineCost) {
+        tooltip.innerHTML = "Not enough money";
+        setTimeout(() => {
+          tooltip.style.display = "none";
+        }, 1000);
         return;
       }
       break;
     case "conveyor":
-      if (xp < 1) {
+      if (xp < conveyorCost) {
+        tooltip.innerHTML = "Not enough money";
+        setTimeout(() => {
+          tooltip.style.display = "none";
+        }, 1000);
         return;
       }
       break;
     case "smelter":
-      if (xp < 3) {
+      if (xp < smelterCost) {
+        tooltip.innerHTML = "Not enough money";
+        setTimeout(() => {
+          tooltip.style.display = "none";
+        }, 1000);
         return;
       }
       break;
@@ -60,8 +74,6 @@ function buildEvent(type) {
   // start projection event (takes the html element and adds mousemove follow)
   project(type);
   // text of what is currently selected
-  tooltip = document.getElementById("tooltip");
-  tooltip.style.display = "block";
   // changes the text based on what was selected
   switch (type) {
     case "mine":
@@ -87,42 +99,53 @@ function buildEvent(type) {
       case "mine":
         if (grid[y][x] === "iron") {
           tooltip.style.display = "none";
-          xp -= 5;
+          xp -= mineCost;
           new Building(type, position).add();
           buildSelected = false;
           projectionRemove();
         } else {
-          tooltip.style.display = "none";
+          tooltip.innerHTML = "Invalid location";
+          setTimeout(() => {
+            tooltip.style.display = "none";
+          }, 1000);
           projectionRemove();
         }
         break;
       case "conveyor":
         if (grid[y][x] === "empty") {
           tooltip.style.display = "none";
-          xp -= 1;
+          xp -= conveyorCost;
           new Building(type, position, directions[currentDirection]).add();
           buildSelected = false;
           projectionRemove();
+        } else {
+          tooltip.innerHTML = "Invalid location";
+          setTimeout(() => {
+            tooltip.style.display = "none";
+          }, 1000);
+          projectionRemove();
         }
-        tooltip.style.display = "none";
-        projectionRemove();
         break;
       case "smelter":
         if (grid[y][x] === "empty") {
           tooltip.style.display = "none";
-          xp -= 3;
+          xp -= smelterCost;
           new Building(type, position).add();
           buildSelected = false;
           projectionRemove();
+        } else {
+          tooltip.innerHTML = "Invalid location";
+          setTimeout(() => {
+            tooltip.style.display = "none";
+          }, 1000);
+          projectionRemove();
         }
-        tooltip.style.display = "none";
-        projectionRemove();
         break;
       case "remove":
         switch (grid[y][x]) {
           case "mine":
             tooltip.style.display = "none";
-            xp += 5;
+            xp += mineCost;
             grid[y][x] = "iron";
             buildSelected = false;
             projectionRemove();
@@ -140,14 +163,18 @@ function buildEvent(type) {
           case "conveyorWN":
           case "conveyorWS":
             tooltip.style.display = "none";
-            xp += 1;
+            xp += conveyorCost;
             grid[y][x] = "empty";
             buildSelected = false;
             projectionRemove();
             break;
           case "smelter":
             tooltip.style.display = "none";
-            xp += 3;
+            smelterCost -= smelterCount * 20;
+            smelterCount--;
+            xp += smelterCost;
+            console.log("$", smelterCost);
+            console.log("Smelters", smelterCount);
             grid[y][x] = "empty";
             buildSelected = false;
             projectionRemove();
@@ -160,7 +187,6 @@ function buildEvent(type) {
         break;
     }
     this.removeEventListener("click", build);
-    tooltip.style.display = "none";
     buildSelected = false;
   });
 }
