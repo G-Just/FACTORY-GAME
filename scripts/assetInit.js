@@ -57,6 +57,3 @@ const mineButton = document.getElementById("mine");
 const conveyorButton = document.getElementById("conveyor");
 const smelterButton = document.getElementById("smelter");
 const removeButton = document.getElementById("remove");
-
-//tooltip
-let tooltip = document.getElementById("tooltip");

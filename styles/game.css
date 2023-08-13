@@ -99,7 +99,7 @@ canvas {
   letter-spacing: 5px;
   text-shadow: 3px 3px black;
   position: absolute;
-  top: 10%;
+  top: 11%;
   left: 50%;
   transform: translate(-50%, 0);
   color: white;
@@ -132,7 +132,7 @@ canvas {
   align-items: center;
 }
 
-hr {
+#xp > hr {
   width: 100%;
 }
 
@@ -143,40 +143,54 @@ hr {
 
 #upgrade-window {
   position: absolute;
-  top: 5%;
+  top: 2%;
   left: 50%;
   transform: translate(-50%);
-  width: 60%;
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 20px;
+  padding: 20px 50px;
   text-align: center;
   color: white;
 }
 
 #upgrade-window > h1 {
   margin: 0;
-  text-shadow: 3px 3px black;
+  text-shadow: 5px 5px black;
   color: white;
-  font-size: 30pt;
+  font-size: 35pt;
   letter-spacing: 10px;
 }
 
+#upgrade-window > hr {
+  width: 100%;
+  border: 5px solid white;
+}
+
+#upgrade-window hr {
+  width: 100%;
+  border: 2px solid white;
+}
+
 #upgrade-window h2 {
-  margin: 10px;
+  margin-top: 20px;
+  margin-bottom: 0;
   text-shadow: 3px 3px black;
   color: white;
-  font-size: 16pt;
+  font-size: 22pt;
   letter-spacing: 5px;
+}
+
+#upgrade-window > h2 {
+  margin-top: 50px !important;
 }
 
 #exit-upgrades {
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 10px;
   background-color: transparent;
   border: none;
-  font-size: 20pt;
-  font-weight: 900;
+  font-size: 30pt;
+  font-weight: 400;
   color: white;
   cursor: pointer;
   margin: 0;
@@ -186,14 +200,6 @@ hr {
   color: black;
 }
 
-#upgrade-window > h1 {
-  margin: 0;
-}
-
-#upgrade-window > hr {
-  margin: 20px 0;
-}
-
 #upgrade-content {
   display: flex;
   flex-direction: column;
@@ -201,18 +207,37 @@ hr {
 
 .upgrades {
   display: flex;
-  gap: 10px;
-  outline: 5px solid white;
+  gap: 50px;
   padding: 10px;
-}
-
-.upgrades > button {
-  width: 100px;
-  height: 100px;
 }
 
 .moneyGained {
   position: absolute;
   color: white;
   letter-spacing: 2px;
+}
+
+.upgrade-options {
+  cursor: pointer;
+  width: 250px;
+  height: 150px;
+  position: relative;
+  background-color: gray;
+  border: 5px solid rgb(20, 20, 20);
+  font-size: 18pt;
+}
+
+.upgrade-options:hover {
+  background-color: lightgray;
+}
+
+.price-upgrade {
+  color: white;
+  font-size: 30pt;
+  position: absolute;
+  z-index: 1;
+  bottom: -58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 3px 3px black;
 }

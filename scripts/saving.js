@@ -6,8 +6,13 @@ setInterval(() => {
     localStorage.setItem("State", JSON.stringify(grid));
     localStorage.setItem("Xp", JSON.stringify(xp));
     localStorage.setItem("SmelterCost", JSON.stringify(smelterCost));
+    localStorage.setItem("ConveyorSpeed", JSON.stringify(conveyorSpeed));
+    localStorage.setItem("GenerationRate", JSON.stringify(generationRate));
+    localStorage.setItem("XpGain", JSON.stringify(xpGain));
+    localStorage.setItem("Tiers", JSON.stringify(tiers));
+    localStorage.setItem("Prices", JSON.stringify(upgradePrices));
   }
-}, 500);
+}, 1000);
 
 function reset() {
   paused = true;

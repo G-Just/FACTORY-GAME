@@ -1,10 +1,6 @@
 let grid = JSON.parse(localStorage.getItem("State")) || new Array();
 let columns = new Array();
 
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 // 32x32 grid = 50 columns | 28 rows
 canvas.width = 1600;
 canvas.height = 896;
@@ -48,10 +44,11 @@ function background_grid() {
 }
 
 //function that upon calling will generate a resource based on the miners location
+let generationTimer = 0;
 function resourceGenerate(x, y) {
   generationTimer++;
-  // generate a resource every X=25 frames || maybe used for upgrades later to increase speed of generation
   if (generationTimer === generationRate) {
+    // generate a resource every X=25 frames || maybe used for upgrades later to increase speed of generation
     //right
     if (
       grid[y][x + 1] === "conveyorE" ||
@@ -59,7 +56,7 @@ function resourceGenerate(x, y) {
       grid[y][x + 1] === "conveyorES"
     ) {
       resources.push(
-        new Resource("iron", x * 32 + 19, y * 32, { x: 1, y: 0 }, conveyorSpeed)
+        new Resource("iron", x * 32, y * 32, { x: 1, y: 0 }, conveyorSpeed)
       );
     }
     //left
@@ -69,13 +66,7 @@ function resourceGenerate(x, y) {
       grid[y][x - 1] === "conveyorWS"
     ) {
       resources.push(
-        new Resource(
-          "iron",
-          x * 32 - 19,
-          y * 32,
-          { x: -1, y: 0 },
-          conveyorSpeed
-        )
+        new Resource("iron", x * 32, y * 32, { x: -1, y: 0 }, conveyorSpeed)
       );
     }
     //up
@@ -85,13 +76,7 @@ function resourceGenerate(x, y) {
       grid[y - 1][x] === "conveyorNW"
     ) {
       resources.push(
-        new Resource(
-          "iron",
-          x * 32,
-          y * 32 - 19,
-          { x: 0, y: -1 },
-          conveyorSpeed
-        )
+        new Resource("iron", x * 32, y * 32, { x: 0, y: -1 }, conveyorSpeed)
       );
     }
     if (
@@ -100,7 +85,7 @@ function resourceGenerate(x, y) {
       grid[y + 1][x] === "conveyorSW"
     ) {
       resources.push(
-        new Resource("iron", x * 32, y * 32 + 19, { x: 0, y: 1 }, conveyorSpeed)
+        new Resource("iron", x * 32, y * 32, { x: 0, y: 1 }, conveyorSpeed)
       );
     }
     generationTimer = 0;
@@ -123,7 +108,7 @@ function draw() {
         case "mine":
           pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
           pen.drawImage(mine, j * 32, i * 32);
-          resourceGenerate(j, i);
+          resourceGenerate(j, i); // when mine is drawn on canvas trigger resource generation
           break;
         case "conveyorN":
           pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
@@ -189,7 +174,7 @@ function objectCleanUp(obj) {
 }
 
 // Animation loop
-var delta = 100; //delay between frames
+var delta = 1000 / 60; //delay between frames
 var oldTime = 0;
 function animate(currentTime) {
   if (oldTime === 0) {
@@ -204,11 +189,23 @@ function animate(currentTime) {
     });
     resources = resources.filter(objectCleanUp);
     xpLabel.innerHTML = `$${numberWithCommas(xp)}`;
+    mineCostLabel.innerText = `$${mineCost}`;
+    conveyorCostLabel.innerText = `$${conveyorCost}`;
+    smelterCostLabel.innerText = `$${smelterCost}`;
+    if (tiers.mineTier === 6) {
+      minerUpgradeText.innerHTML = `Miner speed<br>Tier: MAX`;
+      mineUpgradeCostLabel.innerHTML = "";
+    }
+    if (tiers.conveyorTier === 6) {
+      conveyorUpgradeText.innerHTML = `Conveyor speed<br>Tier: MAX`;
+      conveyorUpgradeCostLabel.innerHTML = "";
+    }
+    if (tiers.smelterTier === 6) {
+      smelterUpgradeText.innerHTML = `Ore price<br>Tier: MAX`;
+      smelterUpgradeCostLabel.innerHTML = "";
+    }
     oldTime = currentTime;
   }
-  mineCostLabel.innerText = `$${mineCost}`;
-  conveyorCostLabel.innerText = `$${conveyorCost}`;
-  smelterCostLabel.innerText = `$${smelterCost}`;
   window.requestAnimationFrame(animate);
 }
 

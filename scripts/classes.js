@@ -8,12 +8,12 @@ class Ore {
     this.width = 32;
     this.height = 32;
     // generates random coordinates (cannot generate on the edge(border) )
-    let setY = Math.floor(Math.random() * 26) + 1;
-    let setX = Math.floor(Math.random() * 48) + 1;
+    let setY = Math.floor(Math.random() * 23) + 2;
+    let setX = Math.floor(Math.random() * 47) + 2;
     //if the random coordinate is taken generate another one
     while (grid[setY][setX] !== "empty") {
-      setY = Math.floor(Math.random() * 28);
-      setX = Math.floor(Math.random() * 50);
+      setY = Math.floor(Math.random() * 23) + 2;
+      setX = Math.floor(Math.random() * 47) + 2;
     }
     this.position = { setX, setY };
   }
@@ -58,10 +58,10 @@ class Resource {
   }
   // updates the position of the ore
   update() {
-    const LuX = Math.floor((this.x + 1) / 32);
-    const TuY = Math.floor((this.y + 1) / 32);
-    const RuX = Math.floor((this.x + 31) / 32);
-    const BuY = Math.floor((this.y + 31) / 32);
+    const LuX = Math.floor((this.x + 2) / 32);
+    const TuY = Math.floor((this.y + 2) / 32);
+    const RuX = Math.floor((this.x + 30) / 32);
+    const BuY = Math.floor((this.y + 30) / 32);
     try {
       //right
       if (
@@ -111,10 +111,14 @@ class Resource {
       }
       //if it enters the smelter mark it to be removed from the array and add xp
       if (
-        grid[TuY][RuX] === "smelter" &&
-        grid[BuY][RuX] === "smelter" &&
-        grid[TuY][LuX] === "smelter" &&
-        grid[BuY][LuX] === "smelter"
+        grid[Math.floor((this.y + 16) / 32)][Math.floor((this.x + 16) / 32)] ===
+          "smelter" &&
+        grid[Math.floor((this.y + 16) / 32)][Math.floor((this.x + 16) / 32)] ===
+          "smelter" &&
+        grid[Math.floor((this.y + 16) / 32)][Math.floor((this.x + 16) / 32)] ===
+          "smelter" &&
+        grid[Math.floor((this.y + 16) / 32)][Math.floor((this.x + 16) / 32)] ===
+          "smelter"
       ) {
         xp += xpGain;
         this.remove = true;

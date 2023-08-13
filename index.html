@@ -15,7 +15,7 @@
   <body>
     <img id="background" src="art/background.png" alt="background" />
     <!-- PSEUDO ELEMENTS -->
-    <h1 id="tooltip" style="display: none"></h1>
+    <h1 id="tooltip" style="display: none; z-index: 3"></h1>
     <img id="projection" src="" alt="" style="display: none" />
     <!-- GAME -->
     <canvas id="canvas"></canvas>
@@ -65,27 +65,67 @@
       <h1>Upgrades</h1>
       <hr />
       <h2>Quality upgrades</h2>
+      <hr />
       <div id="upgrade-content">
         <div class="upgrades" id="quality-upgrades">
-          <button>Miner speed</button>
-          <button>Conveyor speed</button>
-          <button>Ore value increase</button>
+          <button
+            class="upgrade-options"
+            onclick="upgradeQuality('minerUpgrade')"
+          >
+            <p id="minerUpgradeText">Miner speed</p>
+            <p id="minerUpgrade" class="price-upgrade">$2</p>
+          </button>
+          <button
+            class="upgrade-options"
+            onclick="upgradeQuality('conveyorUpgrade')"
+          >
+            <p id="conveyorUpgradeText">Conveyor speed</p>
+            <p id="conveyorUpgrade" class="price-upgrade">$2</p>
+          </button>
+          <button
+            class="upgrade-options"
+            onclick="upgradeQuality('smelterUpgrade')"
+          >
+            <p id="smelterUpgradeText">Ore value increase</p>
+            <p id="smelterUpgrade" class="price-upgrade">$2</p>
+          </button>
         </div>
         <h2>Ore deposits</h2>
+        <hr />
         <div class="upgrades" id="qantity-upgrades">
-          <button>Generate additional iron deposit</button>
-          <button>Generate additional platinum deposit</button>
-          <button>Generate additional gold deposit</button>
+          <button class="upgrade-options" onclick="addOre('iron')">
+            <p>Generate additional iron deposit</p>
+            <p class="price-upgrade">$2</p>
+          </button>
+          <button class="upgrade-options">
+            <p>Generate additional platinum deposit</p>
+            <p class="price-upgrade">$2</p>
+          </button>
+          <button class="upgrade-options">
+            <p>Generate additional gold deposit</p>
+            <p class="price-upgrade">$2</p>
+          </button>
         </div>
         <h2>Special upgrades</h2>
+        <hr />
         <div class="upgrades" id="special-upgrades">
-          <button>Upgrade 1</button>
-          <button>Upgrade 2</button>
-          <button>Upgrade 3</button>
+          <button class="upgrade-options">
+            <p>Upgrade 123</p>
+            <p class="price-upgrade">2</p>
+          </button>
+          <button class="upgrade-options">
+            <p>Upgrade 123</p>
+            <p class="price-upgrade">2</p>
+          </button>
+          <button class="upgrade-options">
+            <p>Upgrade 123</p>
+            <p class="price-upgrade">2</p>
+          </button>
         </div>
       </div>
     </div>
     <!-- Scripts -->
+    <script src="scripts/helperFunctions.js"></script>
     <script src="scripts/upgrades.js"></script>
     <script src="scripts/variables.js"></script>
     <script src="scripts/assetInit.js"></script>
@@ -95,6 +135,5 @@
     <script src="scripts/pathing.js"></script>
     <script src="scripts/gameEngine.js"></script>
     <script src="scripts/saving.js"></script>
-    <script src="scripts/helperFunctions.js"></script>
   </body>
 </html>

@@ -39,7 +39,6 @@ function project(type) {
 }
 
 function buildEvent(type) {
-  tooltip = document.getElementById("tooltip");
   tooltip.style.display = "block";
   //case looks if user has enough xp and disables the building event if not
   switch (type) {
