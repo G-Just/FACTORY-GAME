@@ -174,7 +174,7 @@ function objectCleanUp(obj) {
 }
 
 // Animation loop
-var delta = 1000 / 60; //delay between frames
+var delta = 1000 / 30; //delay between frames = 1000ms / FPS
 var oldTime = 0;
 function animate(currentTime) {
   if (oldTime === 0) {
