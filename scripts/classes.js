@@ -54,7 +54,17 @@ class Resource {
   }
   //draws the ore on the conveyor belt
   draw() {
-    pen.drawImage(ironResource, this.x, this.y);
+    switch (this.type) {
+      case "iron":
+        pen.drawImage(ironDeposit, this.x, this.y);
+        break;
+      case "platinum":
+        pen.drawImage(platinumDeposit, this.x, this.y);
+        break;
+      case "gold":
+        pen.drawImage(goldDeposit, this.x, this.y);
+        break;
+    }
   }
   // updates the position of the ore
   update() {
@@ -120,14 +130,27 @@ class Resource {
         grid[Math.floor((this.y + 16) / 32)][Math.floor((this.x + 16) / 32)] ===
           "smelter"
       ) {
-        xp += xpGain;
+        switch (this.type) {
+          case "iron":
+            this.xpgain = xpGain.iron;
+            xp += this.xpgain;
+            break;
+          case "platinum":
+            this.xpgain = xpGain.platinum;
+            xp += this.xpgain;
+            break;
+          case "gold":
+            this.xpgain = xpGain.gold;
+            xp += this.xpgain;
+            break;
+        }
         this.remove = true;
         // money gained text
         let moneyGained = document.createElement("p");
         moneyGained.setAttribute("class", "moneyGained");
         tooltip.insertAdjacentElement("beforebegin", moneyGained);
         moneyGained.style = "opacity:0%";
-        moneyGained.innerText = `+$${xpGain}`;
+        moneyGained.innerText = `+$${this.xpgain}`;
         moneyGained.style.top = `${this.y}px`;
         moneyGained.style.left = `${this.x + 160}px`;
         moneyGained.animate(

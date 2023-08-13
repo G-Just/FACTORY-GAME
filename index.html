@@ -26,6 +26,15 @@
         <p id="xpLabel">$0</p>
       </div>
     </div>
+    <div id="stats" class="calcs">
+      <div id="xp">
+        <p style="margin: 0">Income</p>
+        <hr />
+        <p id="income"></p>
+        <hr style="width: 50px; margin: 2px" />
+        <p id="income">Minute</p>
+      </div>
+    </div>
     <div id="buttons">
       <button class="build-button" id="mine" onclick="buildEvent('mine');">
         <p>Mine</p>
@@ -51,11 +60,8 @@
         Remove
       </button>
       <button class="build-button" id="Reset" onclick="reset();">Reset</button>
-      <button class="build-button" id="Reset" onclick="log();">
-        Log grid for debugging
-      </button>
     </div>
-    <!-- UPGRADE BUTTONS -->
+    <!-- UPGRADE BUTTON -->
     <div id="upgrade-button">
       <button id="upgrade" onclick="openUpgradeWindow()">Upgrades</button>
     </div>
@@ -94,45 +100,45 @@
         <hr />
         <div class="upgrades" id="qantity-upgrades">
           <button class="upgrade-options" onclick="addOre('iron')">
-            <p>Generate additional iron deposit [partially functional]</p>
-            <p class="price-upgrade">$2</p>
+            <p>Generate additional iron deposit</p>
+            <p id="ironUpgradePrice" class="price-upgrade">$2</p>
           </button>
-          <button class="upgrade-options">
-            <p>Generate additional platinum deposit [not functional]</p>
-            <p class="price-upgrade">$2</p>
+          <button class="upgrade-options" onclick="addOre('platinum')">
+            <p>Generate additional platinum deposit</p>
+            <p id="platinumUpgradePrice" class="price-upgrade">$2</p>
           </button>
-          <button class="upgrade-options">
-            <p>Generate additional gold deposit [not functional]</p>
-            <p class="price-upgrade">$2</p>
+          <button class="upgrade-options" onclick="addOre('gold')">
+            <p>Generate additional gold deposit</p>
+            <p id="goldUpgradePrice" class="price-upgrade">$2</p>
           </button>
         </div>
         <h2>Special upgrades</h2>
         <hr />
         <div class="upgrades" id="special-upgrades">
           <button class="upgrade-options">
-            <p>Upgrade 123 [not functional]</p>
-            <p class="price-upgrade">2</p>
+            <p>Under development</p>
+            <p class="price-upgrade">$~</p>
           </button>
           <button class="upgrade-options">
-            <p>Upgrade 123 [not functional]</p>
-            <p class="price-upgrade">2</p>
+            <p>Under development</p>
+            <p class="price-upgrade">$~</p>
           </button>
           <button class="upgrade-options">
-            <p>Upgrade 123 [not functional]</p>
-            <p class="price-upgrade">2</p>
+            <p>Under development</p>
+            <p class="price-upgrade">$~</p>
           </button>
         </div>
       </div>
     </div>
     <!-- Scripts -->
     <script src="scripts/helperFunctions.js"></script>
-    <script src="scripts/upgrades.js"></script>
     <script src="scripts/variables.js"></script>
     <script src="scripts/assetInit.js"></script>
     <script src="scripts/classes.js"></script>
     <script src="scripts/building.js"></script>
     <script src="scripts/eventListeners.js"></script>
     <script src="scripts/pathing.js"></script>
+    <script src="scripts/upgrades.js"></script>
     <script src="scripts/gameEngine.js"></script>
     <script src="scripts/saving.js"></script>
   </body>

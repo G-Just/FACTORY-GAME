@@ -1,6 +1,12 @@
 //art
 var iron = document.createElement("img");
-iron.setAttribute("src", "./art/ironOre.png");
+iron.setAttribute("src", "./art/ironDeposit.png");
+
+var platinum = document.createElement("img");
+platinum.setAttribute("src", "./art/platinumDeposit.png");
+
+var gold = document.createElement("img");
+gold.setAttribute("src", "./art/goldDeposit.png");
 
 var grass = document.createElement("img");
 grass.setAttribute("src", "./art/tilesetGrass.png");
@@ -47,8 +53,14 @@ conveyorWS.setAttribute("src", "./art/conveyorBeltWS.png");
 var smelter = document.createElement("img");
 smelter.setAttribute("src", "./art/smelter.png");
 
-var ironResource = document.createElement("img");
-ironResource.setAttribute("src", "./art/ironResource.png");
+var ironDeposit = document.createElement("img");
+ironDeposit.setAttribute("src", "./art/ironResource.png");
+
+var platinumDeposit = document.createElement("img");
+platinumDeposit.setAttribute("src", "./art/platinumResource.png");
+
+var goldDeposit = document.createElement("img");
+goldDeposit.setAttribute("src", "./art/goldResource.png");
 
 //sounds
 

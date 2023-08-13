@@ -11,7 +11,9 @@ function conveyorPathHandler() {
               grid[i][j + 1] === "conveyorW" ||
               grid[i][j + 1] === "conveyorSW" ||
               grid[i][j + 1] === "conveyorNW" ||
-              grid[i][j + 1] === "mine"
+              grid[i][j + 1] === "mineiron" ||
+              grid[i][j + 1] === "mineplatinum" ||
+              grid[i][j + 1] === "minegold"
             ) {
               4;
               grid[i][j] = "conveyorWN";
@@ -35,7 +37,9 @@ function conveyorPathHandler() {
               grid[i][j - 1] === "conveyorE" ||
               grid[i][j - 1] === "conveyorSE" ||
               grid[i][j - 1] === "conveyorNE" ||
-              grid[i][j - 1] === "mine"
+              grid[i][j - 1] === "mineiron" ||
+              grid[i][j - 1] === "mineplatinum" ||
+              grid[i][j - 1] === "minegold"
             ) {
               grid[i][j] = "conveyorEN";
             }
@@ -55,7 +59,9 @@ function conveyorPathHandler() {
               grid[i][j + 1] === "conveyorW" ||
               grid[i][j + 1] === "conveyorSW" ||
               grid[i][j + 1] === "conveyorNW" ||
-              grid[i][j + 1] === "mine"
+              grid[i][j + 1] === "mineiron" ||
+              grid[i][j + 1] === "mineplatinum" ||
+              grid[i][j + 1] === "minegold"
             ) {
               grid[i][j] = "conveyorWS";
             }
@@ -64,7 +70,9 @@ function conveyorPathHandler() {
               grid[i][j - 1] === "conveyorE" ||
               grid[i][j - 1] === "conveyorSE" ||
               grid[i][j - 1] === "conveyorNE" ||
-              grid[i][j - 1] === "mine"
+              grid[i][j - 1] === "mineiron" ||
+              grid[i][j - 1] === "mineplatinum" ||
+              grid[i][j - 1] === "minegold"
             ) {
               grid[i][j] = "conveyorES";
             }
@@ -86,7 +94,9 @@ function conveyorPathHandler() {
               grid[i + 1][j] === "conveyorN" ||
               grid[i + 1][j] === "conveyorWN" ||
               grid[i + 1][j] === "conveyorEN" ||
-              grid[i + 1][j] === "mine"
+              grid[i + 1][j] === "mineiron" ||
+              grid[i + 1][j] === "mineplatinum" ||
+              grid[i + 1][j] === "minegold"
             ) {
               grid[i][j] = "conveyorNE";
             }
@@ -102,7 +112,9 @@ function conveyorPathHandler() {
               grid[i - 1][j] === "conveyorS" ||
               grid[i - 1][j] === "conveyorWS" ||
               grid[i - 1][j] === "conveyorES" ||
-              grid[i - 1][j] === "mine"
+              grid[i - 1][j] === "mineiron" ||
+              grid[i - 1][j] === "mineplatinum" ||
+              grid[i - 1][j] === "minegold"
             ) {
               grid[i][j] = "conveyorSE";
             }
@@ -122,7 +134,9 @@ function conveyorPathHandler() {
               grid[i + 1][j] === "conveyorN" ||
               grid[i + 1][j] === "conveyorWN" ||
               grid[i + 1][j] === "conveyorEN" ||
-              grid[i + 1][j] === "mine"
+              grid[i + 1][j] === "mineiron" ||
+              grid[i + 1][j] === "mineplatinum" ||
+              grid[i + 1][j] === "minegold"
             ) {
               grid[i][j] = "conveyorNW";
             }
@@ -138,7 +152,9 @@ function conveyorPathHandler() {
               grid[i - 1][j] === "conveyorS" ||
               grid[i - 1][j] === "conveyorWS" ||
               grid[i - 1][j] === "conveyorES" ||
-              grid[i - 1][j] === "mine"
+              grid[i - 1][j] === "mineiron" ||
+              grid[i - 1][j] === "mineplatinum" ||
+              grid[i - 1][j] === "minegold"
             ) {
               grid[i][j] = "conveyorSW";
             }

@@ -44,28 +44,22 @@ function buildEvent(type) {
   switch (type) {
     case "mine":
       if (xp < mineCost) {
-        tooltip.innerHTML = "Not enough money";
-        setTimeout(() => {
-          tooltip.style.display = "none";
-        }, 1000);
+        displayError("Insufficient funds");
+        2;
         return;
       }
       break;
     case "conveyor":
       if (xp < conveyorCost) {
-        tooltip.innerHTML = "Not enough money";
-        setTimeout(() => {
-          tooltip.style.display = "none";
-        }, 1000);
+        displayError("Insufficient funds");
+        2;
         return;
       }
       break;
     case "smelter":
       if (xp < smelterCost) {
-        tooltip.innerHTML = "Not enough money";
-        setTimeout(() => {
-          tooltip.style.display = "none";
-        }, 1000);
+        displayError("Insufficient funds");
+        2;
         return;
       }
       break;
@@ -96,17 +90,18 @@ function buildEvent(type) {
     const position = { x: x, y: y };
     switch (type) {
       case "mine":
-        if (grid[y][x] === "iron") {
+        if (
+          grid[y][x] === "iron" ||
+          grid[y][x] === "platinum" ||
+          grid[y][x] === "gold"
+        ) {
           tooltip.style.display = "none";
           xp -= mineCost;
-          new Building(type, position).add();
+          new Building(type + grid[y][x], position).add();
           buildSelected = false;
           projectionRemove();
         } else {
-          tooltip.innerHTML = "Invalid location";
-          setTimeout(() => {
-            tooltip.style.display = "none";
-          }, 1000);
+          displayError("Invalid location");
           projectionRemove();
         }
         break;
@@ -118,10 +113,7 @@ function buildEvent(type) {
           buildSelected = false;
           projectionRemove();
         } else {
-          tooltip.innerHTML = "Invalid location";
-          setTimeout(() => {
-            tooltip.style.display = "none";
-          }, 1000);
+          displayError("Invalid location");
           projectionRemove();
         }
         break;
@@ -133,19 +125,30 @@ function buildEvent(type) {
           buildSelected = false;
           projectionRemove();
         } else {
-          tooltip.innerHTML = "Invalid location";
-          setTimeout(() => {
-            tooltip.style.display = "none";
-          }, 1000);
+          displayError("Invalid location");
           projectionRemove();
         }
         break;
       case "remove":
         switch (grid[y][x]) {
-          case "mine":
+          case "mineiron":
             tooltip.style.display = "none";
             xp += mineCost;
             grid[y][x] = "iron";
+            buildSelected = false;
+            projectionRemove();
+            break;
+          case "mineplatinum":
+            tooltip.style.display = "none";
+            xp += mineCost;
+            grid[y][x] = "platinum";
+            buildSelected = false;
+            projectionRemove();
+            break;
+          case "minegold":
+            tooltip.style.display = "none";
+            xp += mineCost;
+            grid[y][x] = "gold";
             buildSelected = false;
             projectionRemove();
             break;

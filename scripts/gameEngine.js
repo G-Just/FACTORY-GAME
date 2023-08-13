@@ -45,51 +45,164 @@ function background_grid() {
 
 //function that upon calling will generate a resource based on the miners location
 let generationTimer = 0;
-function resourceGenerate(x, y) {
+let coords = [];
+let coordsFinal = [];
+function resourceGenerate(x, y, type) {
   generationTimer++;
-  if (generationTimer === generationRate) {
+  coords.push({ x: x, y: y, type: type });
+  // magical code WHO DA FUCK KNOWS HOW THIS WORKS
+  // Removes all the duplicates from coords and makes a unique only coordsfinal array
+  coordsFinal = coords.filter(
+    (value, index, self) =>
+      index === self.findIndex((t) => t.x === value.x && t.y === value.y)
+  );
+}
+
+let presetInterval = setInterval(() => {
+  coords = [];
+  coordsFinal.forEach((mine) => {
     // generate a resource every X=25 frames || maybe used for upgrades later to increase speed of generation
     //right
     if (
-      grid[y][x + 1] === "conveyorE" ||
-      grid[y][x + 1] === "conveyorEN" ||
-      grid[y][x + 1] === "conveyorES"
+      grid[mine.y][mine.x + 1] === "conveyorE" ||
+      grid[mine.y][mine.x + 1] === "conveyorEN" ||
+      grid[mine.y][mine.x + 1] === "conveyorES"
     ) {
       resources.push(
-        new Resource("iron", x * 32, y * 32, { x: 1, y: 0 }, conveyorSpeed)
+        new Resource(
+          mine.type,
+          mine.x * 32,
+          mine.y * 32,
+          { x: 1, y: 0 },
+          conveyorSpeed
+        )
       );
     }
     //left
     if (
-      grid[y][x - 1] === "conveyorW" ||
-      grid[y][x - 1] === "conveyorWN" ||
-      grid[y][x - 1] === "conveyorWS"
+      grid[mine.y][mine.x - 1] === "conveyorW" ||
+      grid[mine.y][mine.x - 1] === "conveyorWN" ||
+      grid[mine.y][mine.x - 1] === "conveyorWS"
     ) {
       resources.push(
-        new Resource("iron", x * 32, y * 32, { x: -1, y: 0 }, conveyorSpeed)
+        new Resource(
+          mine.type,
+          mine.x * 32,
+          mine.y * 32,
+          { x: -1, y: 0 },
+          conveyorSpeed
+        )
       );
     }
     //up
     if (
-      grid[y - 1][x] === "conveyorN" ||
-      grid[y - 1][x] === "conveyorNE" ||
-      grid[y - 1][x] === "conveyorNW"
+      grid[mine.y - 1][mine.x] === "conveyorN" ||
+      grid[mine.y - 1][mine.x] === "conveyorNE" ||
+      grid[mine.y - 1][mine.x] === "conveyorNW"
     ) {
       resources.push(
-        new Resource("iron", x * 32, y * 32, { x: 0, y: -1 }, conveyorSpeed)
+        new Resource(
+          mine.type,
+          mine.x * 32,
+          mine.y * 32,
+          { x: 0, y: -1 },
+          conveyorSpeed
+        )
       );
     }
+    //down
     if (
-      grid[y + 1][x] === "conveyorS" ||
-      grid[y + 1][x] === "conveyorSE" ||
-      grid[y + 1][x] === "conveyorSW"
+      grid[mine.y + 1][mine.x] === "conveyorS" ||
+      grid[mine.y + 1][mine.x] === "conveyorSE" ||
+      grid[mine.y + 1][mine.x] === "conveyorSW"
     ) {
       resources.push(
-        new Resource("iron", x * 32, y * 32, { x: 0, y: 1 }, conveyorSpeed)
+        new Resource(
+          mine.type,
+          mine.x * 32,
+          mine.y * 32,
+          { x: 0, y: 1 },
+          conveyorSpeed
+        )
       );
     }
-    generationTimer = 0;
-  }
+  });
+  coordsFinal = [];
+}, generationRate);
+
+function resetInterval() {
+  clearInterval(presetInterval);
+  presetInterval = setInterval(() => {
+    coords = [];
+    coordsFinal.forEach((mine) => {
+      // generate a resource every X=25 frames || maybe used for upgrades later to increase speed of generation
+      //right
+      if (
+        grid[mine.y][mine.x + 1] === "conveyorE" ||
+        grid[mine.y][mine.x + 1] === "conveyorEN" ||
+        grid[mine.y][mine.x + 1] === "conveyorES"
+      ) {
+        resources.push(
+          new Resource(
+            mine.type,
+            mine.x * 32,
+            mine.y * 32,
+            { x: 1, y: 0 },
+            conveyorSpeed
+          )
+        );
+      }
+      //left
+      if (
+        grid[mine.y][mine.x - 1] === "conveyorW" ||
+        grid[mine.y][mine.x - 1] === "conveyorWN" ||
+        grid[mine.y][mine.x - 1] === "conveyorWS"
+      ) {
+        resources.push(
+          new Resource(
+            mine.type,
+            mine.x * 32,
+            mine.y * 32,
+            { x: -1, y: 0 },
+            conveyorSpeed
+          )
+        );
+      }
+      //up
+      if (
+        grid[mine.y - 1][mine.x] === "conveyorN" ||
+        grid[mine.y - 1][mine.x] === "conveyorNE" ||
+        grid[mine.y - 1][mine.x] === "conveyorNW"
+      ) {
+        resources.push(
+          new Resource(
+            mine.type,
+            mine.x * 32,
+            mine.y * 32,
+            { x: 0, y: -1 },
+            conveyorSpeed
+          )
+        );
+      }
+      //down
+      if (
+        grid[mine.y + 1][mine.x] === "conveyorS" ||
+        grid[mine.y + 1][mine.x] === "conveyorSE" ||
+        grid[mine.y + 1][mine.x] === "conveyorSW"
+      ) {
+        resources.push(
+          new Resource(
+            mine.type,
+            mine.x * 32,
+            mine.y * 32,
+            { x: 0, y: 1 },
+            conveyorSpeed
+          )
+        );
+      }
+    });
+    coordsFinal = [];
+  }, generationRate);
 }
 
 // function that draws everything on the board based on the grid cell parameters
@@ -105,10 +218,28 @@ function draw() {
           pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
           pen.drawImage(iron, j * 32, i * 32);
           break;
-        case "mine":
+        case "platinum":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(platinum, j * 32, i * 32);
+          break;
+        case "gold":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(gold, j * 32, i * 32);
+          break;
+        case "mineiron":
           pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
           pen.drawImage(mine, j * 32, i * 32);
-          resourceGenerate(j, i); // when mine is drawn on canvas trigger resource generation
+          resourceGenerate(j, i, "iron"); // when mine is drawn on canvas trigger resource generation
+          break;
+        case "mineplatinum":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(mine, j * 32, i * 32);
+          resourceGenerate(j, i, "platinum"); // when mine is drawn on canvas trigger resource generation
+          break;
+        case "minegold":
+          pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
+          pen.drawImage(mine, j * 32, i * 32);
+          resourceGenerate(j, i, "gold"); // when mine is drawn on canvas trigger resource generation
           break;
         case "conveyorN":
           pen.drawImage(grass, 32, 64, 32, 32, j * 32, i * 32, 32, 32);
@@ -173,8 +304,28 @@ function objectCleanUp(obj) {
   return result;
 }
 
+let incomeLabel = document.getElementById("income");
+let oldxp = 0;
+let newxp = xp;
+let timer = 1;
+let gained = 0;
+let total = xp * -1;
+setInterval(() => {
+  if (timer <= 60) {
+    newxp = xp;
+    gained = newxp - oldxp;
+    total += gained;
+    oldxp = newxp;
+    incomeLabel.innerHTML = `$${Math.round(total / timer)}`;
+    timer++;
+  } else {
+    timer = 1;
+    total = 0;
+  }
+}, 1000);
+
 // Animation loop
-var delta = 100; //delay between frames
+var delta = 1000 / 60; //delay between frames
 var oldTime = 0;
 function animate(currentTime) {
   if (oldTime === 0) {
@@ -187,23 +338,6 @@ function animate(currentTime) {
     resources.forEach((resource) => {
       resource.update();
     });
-    resources = resources.filter(objectCleanUp);
-    xpLabel.innerHTML = `$${numberWithCommas(xp)}`;
-    mineCostLabel.innerText = `$${mineCost}`;
-    conveyorCostLabel.innerText = `$${conveyorCost}`;
-    smelterCostLabel.innerText = `$${smelterCost}`;
-    if (tiers.mineTier === 6) {
-      minerUpgradeText.innerHTML = `Miner speed<br>Tier: MAX`;
-      mineUpgradeCostLabel.innerHTML = "";
-    }
-    if (tiers.conveyorTier === 6) {
-      conveyorUpgradeText.innerHTML = `Conveyor speed<br>Tier: MAX`;
-      conveyorUpgradeCostLabel.innerHTML = "";
-    }
-    if (tiers.smelterTier === 6) {
-      smelterUpgradeText.innerHTML = `Ore price<br>Tier: MAX`;
-      smelterUpgradeCostLabel.innerHTML = "";
-    }
     oldTime = currentTime;
   }
   window.requestAnimationFrame(animate);
@@ -212,6 +346,19 @@ function animate(currentTime) {
 // Starting animation loop
 requestAnimationFrame(animate);
 
-function log() {
-  console.log(grid);
-}
+setInterval(() => {
+  updateLabels();
+  resources = resources.filter(objectCleanUp);
+  if (tiers.mineTier === 6) {
+    minerUpgradeText.innerHTML = `Miner speed<br>Tier: MAX`;
+    mineUpgradeCostLabel.innerHTML = "";
+  }
+  if (tiers.conveyorTier === 6) {
+    conveyorUpgradeText.innerHTML = `Conveyor speed<br>Tier: MAX`;
+    conveyorUpgradeCostLabel.innerHTML = "";
+  }
+  if (tiers.smelterTier === 6) {
+    smelterUpgradeText.innerHTML = `Ore price<br>Tier: MAX`;
+    smelterUpgradeCostLabel.innerHTML = "";
+  }
+});

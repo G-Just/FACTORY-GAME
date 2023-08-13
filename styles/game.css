@@ -30,7 +30,7 @@ canvas {
 #upgrade-button {
   position: absolute;
   left: 30px;
-  top: 150px;
+  top: 310px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -215,11 +215,13 @@ canvas {
   position: absolute;
   color: white;
   letter-spacing: 2px;
+  pointer-events: none;
+  cursor: none;
 }
 
 .upgrade-options {
   cursor: pointer;
-  width: 250px;
+  width: 300px;
   height: 150px;
   position: relative;
   background-color: gray;
@@ -240,4 +242,14 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
   text-shadow: 3px 3px black;
+}
+
+.calcs {
+  top: 150px !important;
+  width: 100px;
+}
+
+#income {
+  font-size: 16pt;
+  margin: 0;
 }

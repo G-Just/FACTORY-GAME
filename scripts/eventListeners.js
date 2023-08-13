@@ -40,6 +40,9 @@ window.addEventListener("keydown", (event) => {
       // Esc button should remove the click listener form canvas in building.js (idk how)
       tooltip.style.display = "none";
       projectionRemove();
+      if (upgradeWindow.style.display === "block") {
+        upgradeWindow.style.display = "none";
+      }
       break;
   }
 });
