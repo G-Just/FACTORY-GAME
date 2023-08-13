@@ -9,18 +9,17 @@ Add an animation that rotates around the top part of the projection and swings b
 Esc key should remove the event listener, right now it only removes the label + projection
 (Might need to reformat the code to enable removing the event listener (it is currently an anonymous function))
 
-#Art
+#Art -> DONE
 Add remove buildings art
-Figure out a way to make the art better
 
 #Gameplay
-@Upgrades (paid via XP)
-1.Add an ore tile 
-2.Upgrade miners to generate more ore per minute
-3.Upgrade conveyor belts to transport faster
+@Upgrades (paid via XP) -> DONE
+1.Add an ore tile  -> DONE
+2.Upgrade miners to generate more ore per minute -> DONE
+3.Upgrade conveyor belts to transport faster -> DONE
 
 @Economy
-1.Make buildings cost xp = game economy -> DONE 
+1.Make buildings cost xp/$ = game economy -> DONE 
 2.Introduce more buildings (smelter outputs something??)
 
 #Sounds
