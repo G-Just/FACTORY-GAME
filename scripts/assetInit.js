@@ -9,40 +9,40 @@ var mine = document.createElement("img");
 mine.setAttribute("src", "./art/mine.png");
 
 var conveyorN = document.createElement("img");
-conveyorN.setAttribute("src", "./art/ConveyorBeltN.png");
+conveyorN.setAttribute("src", "./art/conveyorBeltN.png");
 
 var conveyorE = document.createElement("img");
-conveyorE.setAttribute("src", "./art/ConveyorBeltE.png");
+conveyorE.setAttribute("src", "./art/conveyorBeltE.png");
 
 var conveyorS = document.createElement("img");
-conveyorS.setAttribute("src", "./art/ConveyorBeltS.png");
+conveyorS.setAttribute("src", "./art/conveyorBeltS.png");
 
 var conveyorW = document.createElement("img");
-conveyorW.setAttribute("src", "./art/ConveyorBeltW.png");
+conveyorW.setAttribute("src", "./art/conveyorBeltW.png");
 
 var conveyorNE = document.createElement("img");
-conveyorNE.setAttribute("src", "./art/ConveyorBeltNE.png");
+conveyorNE.setAttribute("src", "./art/conveyorBeltNE.png");
 
 var conveyorNW = document.createElement("img");
-conveyorNW.setAttribute("src", "./art/ConveyorBeltNW.png");
+conveyorNW.setAttribute("src", "./art/conveyorBeltNW.png");
 
 var conveyorEN = document.createElement("img");
-conveyorEN.setAttribute("src", "./art/ConveyorBeltEN.png");
+conveyorEN.setAttribute("src", "./art/conveyorBeltEN.png");
 
 var conveyorES = document.createElement("img");
-conveyorES.setAttribute("src", "./art/ConveyorBeltES.png");
+conveyorES.setAttribute("src", "./art/conveyorBeltES.png");
 
 var conveyorSE = document.createElement("img");
-conveyorSE.setAttribute("src", "./art/ConveyorBeltSE.png");
+conveyorSE.setAttribute("src", "./art/conveyorBeltSE.png");
 
 var conveyorSW = document.createElement("img");
-conveyorSW.setAttribute("src", "./art/ConveyorBeltSW.png");
+conveyorSW.setAttribute("src", "./art/conveyorBeltSW.png");
 
 var conveyorWN = document.createElement("img");
-conveyorWN.setAttribute("src", "./art/ConveyorBeltWN.png");
+conveyorWN.setAttribute("src", "./art/conveyorBeltWN.png");
 
 var conveyorWS = document.createElement("img");
-conveyorWS.setAttribute("src", "./art/ConveyorBeltWS.png");
+conveyorWS.setAttribute("src", "./art/conveyorBeltWS.png");
 
 var smelter = document.createElement("img");
 smelter.setAttribute("src", "./art/smelter.png");
