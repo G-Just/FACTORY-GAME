@@ -172,8 +172,6 @@ function buildEvent(type) {
             smelterCost -= smelterCount * 20;
             smelterCount--;
             xp += smelterCost;
-            console.log("$", smelterCost);
-            console.log("Smelters", smelterCount);
             grid[y][x] = "empty";
             buildSelected = false;
             projectionRemove();

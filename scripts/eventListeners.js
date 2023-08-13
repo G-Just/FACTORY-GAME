@@ -21,13 +21,10 @@ window.addEventListener("keydown", (event) => {
       break;
     case "r":
     case "R":
+      let pattern = /conveyorBelt/i;
+      let result = img.src.match(pattern);
       //if conveyor is selected trigger the rotation
-      if (
-        img.src === "http://127.0.0.1:5500/art/conveyorBeltN.png" ||
-        img.src === "http://127.0.0.1:5500/art/conveyorBeltE.png" ||
-        img.src === "http://127.0.0.1:5500/art/conveyorBeltS.png" ||
-        img.src === "http://127.0.0.1:5500/art/conveyorBeltW.png"
-      ) {
+      if (result !== null) {
         if (currentDirection === 3) {
           currentDirection = 0;
         } else {
