@@ -335,6 +335,10 @@ function offset() {
   }
 }
 
+function offsetSnap() {
+  // snap to the 32px interval after panning is over
+}
+
 // Animation loop
 var delta = 1000 / 60; //delay between frames
 var oldTime = 0;
