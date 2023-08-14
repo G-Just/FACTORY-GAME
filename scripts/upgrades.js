@@ -126,22 +126,25 @@ function upgradeQuality(type) {
 let depositCount = 1;
 function addOre(type) {
   if (xp >= upgradePrices.ironUpgradePrice) {
-    xp -= upgradePrices.ironUpgradePrice;
     switch (type) {
       case "iron":
+        xp -= upgradePrices.ironUpgradePrice;
         new Ore("iron").add();
         depositCount++;
         upgradePrices.ironUpgradePrice *= 2;
         break;
       case "platinum":
+        xp -= upgradePrices.platinumUpgradePrice;
         new Ore("platinum").add();
         depositCount++;
         upgradePrices.platinumUpgradePrice *= 2;
         break;
       case "gold":
+        xp -= upgradePrices.goldUpgradePrice;
         new Ore("gold").add();
         depositCount++;
         upgradePrices.goldUpgradePrice *= 2;
+        console.log(upgradePrices);
         break;
     }
   } else {
