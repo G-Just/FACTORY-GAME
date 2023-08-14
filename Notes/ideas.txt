@@ -1,26 +1,17 @@
-#Make the word bigger and make the camera able to pan around it
-Zooming in + out?
-
 #Projection system
 Changes colors from transparent gray -> green when place is valid
 Add an animation that rotates around the top part of the projection and swings based on the mouse movement
 
-#Feature
+#Features
 Esc key should remove the event listener, right now it only removes the label + projection
 (Might need to reformat the code to enable removing the event listener (it is currently an anonymous function))
 
-#Art -> DONE
-Add remove buildings art
-
 #Gameplay
-@Upgrades (paid via XP) -> DONE
-1.Add an ore tile  -> DONE
-2.Upgrade miners to generate more ore per minute -> DONE
-3.Upgrade conveyor belts to transport faster -> DONE
+Make the word bigger and make the camera able to pan around it
+Zooming in + out?
 
-@Economy
-1.Make buildings cost xp/$ = game economy -> DONE 
-2.Introduce more buildings (smelter outputs something??)
+#Economy
+Introduce more buildings (smelter outputs something??)
 
 #Sounds
 Add game event sounds like gained money etc.
