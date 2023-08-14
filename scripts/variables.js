@@ -13,8 +13,10 @@ let img = document.getElementById("projection");
 //tooltip used to display messages
 let tooltip = document.getElementById("tooltip");
 
-// mouse event variable
+// mouse event variables
 const mouse = {
   x: undefined,
   y: undefined,
+  mouseDown: false,
+  mouseUp: true,
 };

@@ -13,6 +13,7 @@ function projectionRemove() {
 
 function project(type) {
   if (!buildSelected) {
+    buildSelected = true;
     switch (type) {
       case "mine":
         img.style.display = "block";
@@ -82,7 +83,6 @@ function buildEvent(type) {
       tooltip.innerHTML = "Click to remove a building";
       break;
   }
-  buildSelected = true;
   // adds click event to the canvass and executes build on click
   canvas.addEventListener("click", function build() {
     x = Math.floor((mouse.x - 160) / 32);

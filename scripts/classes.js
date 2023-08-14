@@ -8,12 +8,12 @@ class Ore {
     this.width = 32;
     this.height = 32;
     // generates random coordinates (cannot generate on the edge(border) )
-    let setY = Math.floor(Math.random() * 23) + 2;
-    let setX = Math.floor(Math.random() * 47) + 2;
+    let setY = Math.floor(Math.random() * grid.length - 4) + 2;
+    let setX = Math.floor(Math.random() * columns.length - 4) + 2;
     //if the random coordinate is taken generate another one
     while (grid[setY][setX] !== "empty") {
-      setY = Math.floor(Math.random() * 23) + 2;
-      setX = Math.floor(Math.random() * 47) + 2;
+      setY = Math.floor(Math.random() * grid.length - 4) + 2;
+      setX = Math.floor(Math.random() * columns.length - 4) + 2;
     }
     this.position = { setX, setY };
   }

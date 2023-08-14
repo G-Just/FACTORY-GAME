@@ -4,6 +4,23 @@ canvas.addEventListener("mousemove", (mouseMove) => {
   mouse.y = mouseMove.clientY;
 });
 
+let mouseStartX;
+let mouseStartY;
+canvas.addEventListener("mousedown", (event) => {
+  if (!buildSelected) {
+    mouse.mouseDown = true;
+    mouse.mouseUp = false;
+    mouseStartX = mouse.x;
+    mouseStartY = mouse.y;
+  }
+});
+canvas.addEventListener("mouseup", (event) => {
+  if (!buildSelected) {
+    mouse.mouseUp = true;
+    mouse.mouseDown = false;
+  }
+});
+
 // Event listener that gets every button click
 window.addEventListener("keydown", (event) => {
   switch (event.key) {

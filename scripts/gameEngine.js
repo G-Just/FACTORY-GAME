@@ -324,6 +324,17 @@ setInterval(() => {
   }
 }, 1000);
 
+function offset() {
+  // FIXME: make panning functional
+  if (mouse.mouseDown) {
+    offsetX = (mouseStartX - mouse.x) * -1;
+    offsetY = (mouseStartY - mouse.y) * -1;
+    pen.translate(offsetX, offsetY);
+    mouseStartX = mouse.x;
+    mouseStartY = mouse.y;
+  }
+}
+
 // Animation loop
 var delta = 1000 / 60; //delay between frames
 var oldTime = 0;
@@ -332,6 +343,8 @@ function animate(currentTime) {
     oldTime = currentTime;
   }
   if (currentTime - oldTime >= delta) {
+    pen.fillStyle = "black";
+    pen.fillRect(-1, -1, screen.width + 1500, screen.height + 2300);
     conveyorPathHandler();
     draw();
     background_grid();

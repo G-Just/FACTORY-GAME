@@ -14,9 +14,9 @@ body {
   filter: blur(3px);
 }
 
-canvas {
+/* canvas {
   outline: 5px solid black;
-}
+} */
 
 #buttons {
   position: absolute;
