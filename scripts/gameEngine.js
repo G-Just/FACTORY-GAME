@@ -8,7 +8,7 @@ canvas.height = 896;
 if (grid.length === 0) {
   //Create a grid array with data inside (0 = empty)
   //Height of the array (rows)
-  for (let j = 0; j < 29; j++) {
+  for (let j = 0; j <= 28; j++) {
     if (columns.length !== 0) {
       grid.push(columns);
     }
@@ -347,8 +347,6 @@ function animate(currentTime) {
     oldTime = currentTime;
   }
   if (currentTime - oldTime >= delta) {
-    pen.fillStyle = "black";
-    pen.fillRect(-1, -1, screen.width + 1500, screen.height + 2300);
     conveyorPathHandler();
     draw();
     background_grid();
@@ -378,4 +376,4 @@ setInterval(() => {
     smelterUpgradeText.innerHTML = `Ore price<br>Tier: MAX`;
     smelterUpgradeCostLabel.innerHTML = "";
   }
-});
+}, 10);
