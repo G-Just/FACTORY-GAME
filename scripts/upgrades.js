@@ -1,4 +1,4 @@
-let xp = JSON.parse(localStorage.getItem("Xp")) || 1000000000; // starting XP * 10 default
+let xp = JSON.parse(localStorage.getItem("Xp")) || 10; // starting XP * 10 default
 let conveyorSpeed = JSON.parse(localStorage.getItem("ConveyorSpeed")) || 0.2; // multiplies the speed of the objects traveling on conveyors * 1 default
 let generationRate = JSON.parse(localStorage.getItem("GenerationRate")) || 2000; // how many ms for each object to generate from a mine *2000 default
 let xpGain = JSON.parse(localStorage.getItem("XpGain")) || {
