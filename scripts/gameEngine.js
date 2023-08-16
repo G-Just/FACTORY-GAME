@@ -316,7 +316,7 @@ setInterval(() => {
     gained = newxp - oldxp;
     total += gained;
     oldxp = newxp;
-    incomeLabel.innerHTML = `$${Math.round(total / timer)}`;
+    incomeLabel.innerHTML = `$${Math.round(total)}`;
     timer++;
   } else {
     timer = 1;
