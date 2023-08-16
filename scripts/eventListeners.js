@@ -9,14 +9,12 @@ let mouseStartY;
 canvas.addEventListener("mousedown", (event) => {
   if (!buildSelected) {
     mouse.mouseDown = true;
-    mouse.mouseUp = false;
     mouseStartX = mouse.x;
     mouseStartY = mouse.y;
   }
 });
 canvas.addEventListener("mouseup", (event) => {
   if (!buildSelected) {
-    mouse.mouseUp = true;
     mouse.mouseDown = false;
   }
 });
@@ -65,3 +63,42 @@ window.addEventListener("keydown", (event) => {
       break;
   }
 });
+
+//scrollwheel event listener will change the scale of the entire game
+let scale = 1;
+let borderScale = 1;
+canvas.addEventListener("wheel", (event) => {
+  if (scale > 0.5 && scale <= 1.4) {
+    if (event.deltaY < 0) {
+      scale += 0.1;
+      borderScale -= 0.1;
+    }
+    if (event.deltaY > 0) {
+      scale -= 0.1;
+      borderScale += 0.1;
+    }
+  } else {
+    if (scale === 0.5) {
+      if (event.deltaY < 0) {
+        scale += 0.1;
+        borderScale -= 0.1;
+      }
+    }
+    if (scale === 1.5) {
+      if (event.deltaY > 0) {
+        scale -= 0.1;
+        borderScale += 0.1;
+      }
+    }
+  }
+  scale = Number(scale.toPrecision(2));
+  borderScale = Number(borderScale.toPrecision(2));
+  pen.setTransform(scale, 0, 0, scale, coordX, coordY);
+});
+// context.setTransform(a, b, c, d, e, f)
+// a	Scales the drawings horizontally
+// b	Skews the drawings horizontally
+// c	Skews the drawings vertically
+// d	Scales the drawings vertically
+// e	Moves the the drawings horizontally
+// f	Moves the the drawings vertically

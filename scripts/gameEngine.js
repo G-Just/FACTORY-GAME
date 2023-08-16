@@ -1,6 +1,5 @@
 let grid = JSON.parse(localStorage.getItem("State")) || new Array();
 let columns = new Array();
-
 // 32x32 grid = 50 columns | 28 rows
 canvas.width = 1600;
 canvas.height = 896;
@@ -8,13 +7,13 @@ canvas.height = 896;
 if (grid.length === 0) {
   //Create a grid array with data inside (0 = empty)
   //Height of the array (rows)
-  for (let j = 0; j <= 28; j++) {
+  for (let j = 0; j <= 100; j++) {
     if (columns.length !== 0) {
       grid.push(columns);
     }
     columns = [];
     //Width of the array (columns)
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {
       columns.push("empty");
     }
   }
@@ -325,7 +324,9 @@ setInterval(() => {
 }, 1000);
 
 function offset() {
-  // FIXME: make panning functional
+  coordX = pen.getTransform().m41;
+  coordY = pen.getTransform().m42;
+  console.log(coordX, coordY);
   if (mouse.mouseDown) {
     offsetX = (mouseStartX - mouse.x) * -1;
     offsetY = (mouseStartY - mouse.y) * -1;
@@ -333,12 +334,61 @@ function offset() {
     mouseStartX = mouse.x;
     mouseStartY = mouse.y;
   }
+  if (!mouse.mouseDown) {
+    // FIXME: the coordinate bounds (edge of the board needs to scale with the scale value)
+    let working = false;
+    if (coordX > 0) {
+      pen.translate(Math.round((0 - coordX - 0.5) / 2 - 1), 0);
+      working = true;
+    }
+    if (coordX < -1600) {
+      pen.translate(Math.round((-1600 - coordX) / 2 + 1), 0);
+      working = true;
+    }
+    if (coordY > 0) {
+      pen.translate(0, Math.round((0 - coordY) / 2 - 1));
+      working = true;
+    }
+    if (coordY < -2300) {
+      pen.translate(0, Math.round((-2300 - coordY) / 2));
+      working = true;
+    }
+    if (!working) {
+      offsetSnap(coordX, coordY);
+    }
+  }
 }
 
-function offsetSnap() {
-  // snap to the 32px interval after panning is over
+function offsetSnap(x, y) {
+  //FIXME: the nudge does not work need to figure out the math
+  let working = false;
+  convertedX = Math.round(x / (32 * scale)) * (32 * scale);
+  convertedY = Math.round(y / (32 * scale)) * (32 * scale);
+  if (x > convertedX) {
+    pen.translate(Math.round((convertedX - x) / 2), 0);
+    working = true;
+  }
+  if (x < convertedX) {
+    pen.translate(Math.round((x - convertedX) / 2), 0);
+    working = true;
+  }
+  if (y > convertedY) {
+    pen.translate(0, Math.round((y - convertedX) / 2));
+    working = true;
+  }
+  if (y < convertedY) {
+    pen.translate(0, Math.round((convertedX - y) / 2));
+    working = true;
+  }
+  currentGridOffsetX = Math.round(x / (32 * scale));
+  currentGridOffsetY = Math.round(y / (32 * scale));
+  if (currentGridOffsetX !== 0) {
+    currentGridOffsetX *= -1;
+  }
+  if (currentGridOffsetY !== 0) {
+    currentGridOffsetY *= -1;
+  }
 }
-
 // Animation loop
 var delta = 1000 / 60; //delay between frames
 var oldTime = 0;
@@ -347,6 +397,8 @@ function animate(currentTime) {
     oldTime = currentTime;
   }
   if (currentTime - oldTime >= delta) {
+    pen.clearRect(-1000, -1000, 35000, 35000);
+    offset();
     conveyorPathHandler();
     draw();
     background_grid();

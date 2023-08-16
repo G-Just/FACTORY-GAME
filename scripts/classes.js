@@ -8,17 +8,33 @@ class Ore {
     this.width = 32;
     this.height = 32;
     // generates random coordinates (cannot generate on the edge(border) )
-    let setY = Math.floor(Math.random() * (25 - 2 + 1) + 2); //25
-    let setX = Math.floor(Math.random() * (48 - 2 + 1) + 2); //48
+    let setY = Math.floor(Math.random() * (grid.length - 2 - 2 + 1) + 2); //25
+    let setX = Math.floor(Math.random() * (columns.length - 2 - 2 + 1) + 2); //48
     //if the random coordinate is taken generate another one
     while (grid[setY][setX] !== "empty") {
-      setY = Math.floor(Math.random() * (25 - 2 + 1) + 2); //25
-      setX = Math.floor(Math.random() * (48 - 2 + 1) + 2); //48
+      setY = Math.floor(Math.random() * (grid.length - 2 - 2 + 1) + 2); //25
+      setX = Math.floor(Math.random() * (columns.length - 2 - 2 + 1) + 2); //48
     }
     this.position = { setX, setY };
+    console.log(setX, setY);
   }
   add() {
     grid[this.position.setY][this.position.setX] = this.type;
+    pen.setTransform(
+      scale,
+      0,
+      0,
+      scale,
+      this.position.setX * (32 * scale) * -1,
+      this.position.setY * (32 * scale) * -1
+    );
+    // context.setTransform(a, b, c, d, e, f)
+    // a	Scales the drawings horizontally
+    // b	Skews the drawings horizontally
+    // c	Skews the drawings vertically
+    // d	Scales the drawings vertically
+    // e	Moves the the drawings horizontally
+    // f	Moves the the drawings vertically
   }
   destroy() {
     grid[this.position.setY][this.position.setX] = "empty";
@@ -151,8 +167,8 @@ class Resource {
         tooltip.insertAdjacentElement("beforebegin", moneyGained);
         moneyGained.style = "opacity:0%";
         moneyGained.innerText = `+$${this.xpgain}`;
-        moneyGained.style.top = `${this.y}px`;
-        moneyGained.style.left = `${this.x + 160}px`;
+        moneyGained.style.top = `${this.y - currentGridOffsetY * 32}px`;
+        moneyGained.style.left = `${this.x + 160 - currentGridOffsetX * 32}px`;
         moneyGained.animate(
           [
             { transform: "translateY(0px)", opacity: "100%" },

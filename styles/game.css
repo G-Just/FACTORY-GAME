@@ -14,10 +14,6 @@ body {
   filter: blur(3px);
 }
 
-/* canvas {
-  outline: 5px solid black;
-} */
-
 #buttons {
   position: absolute;
   right: 30px;

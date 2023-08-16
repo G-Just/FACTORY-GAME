@@ -1,6 +1,8 @@
 function projectionCoordinates() {
-  x = Math.floor((mouse.x - 160) / 32) * 32;
-  y = Math.floor((mouse.y - 10) / 32) * 32;
+  img.style.width = `${32 * scale}px`;
+  img.style.height = `${32 * scale}px`;
+  x = Math.floor((mouse.x - 160) / (32 * scale)) * (32 * scale);
+  y = Math.floor((mouse.y - 10) / (32 * scale)) * (32 * scale);
   img.style.left = `${x + 160}px`;
   img.style.top = `${y + 10}px`;
 }
@@ -46,21 +48,18 @@ function buildEvent(type) {
     case "mine":
       if (xp < mineCost) {
         displayError("Insufficient funds");
-        2;
         return;
       }
       break;
     case "conveyor":
       if (xp < conveyorCost) {
         displayError("Insufficient funds");
-        2;
         return;
       }
       break;
     case "smelter":
       if (xp < smelterCost) {
         displayError("Insufficient funds");
-        2;
         return;
       }
       break;
@@ -85,19 +84,22 @@ function buildEvent(type) {
   }
   // adds click event to the canvass and executes build on click
   canvas.addEventListener("click", function build() {
-    x = Math.floor((mouse.x - 160) / 32);
-    y = Math.floor((mouse.y - 10) / 32);
-    const position = { x: x, y: y };
+    x = Math.floor((mouse.x - 160) / (32 * scale));
+    y = Math.floor((mouse.y - 10) / (32 * scale));
+    const position = { x: x + currentGridOffsetX, y: y + currentGridOffsetY };
     switch (type) {
       case "mine":
         if (
-          grid[y][x] === "iron" ||
-          grid[y][x] === "platinum" ||
-          grid[y][x] === "gold"
+          grid[y + currentGridOffsetY][x + currentGridOffsetX] === "iron" ||
+          grid[y + currentGridOffsetY][x + currentGridOffsetX] === "platinum" ||
+          grid[y + currentGridOffsetY][x + currentGridOffsetX] === "gold"
         ) {
           tooltip.style.display = "none";
           xp -= mineCost;
-          new Building(type + grid[y][x], position).add();
+          new Building(
+            type + grid[y + currentGridOffsetY][x + currentGridOffsetX],
+            position
+          ).add();
           buildSelected = false;
           projectionRemove();
         } else {
@@ -106,7 +108,7 @@ function buildEvent(type) {
         }
         break;
       case "conveyor":
-        if (grid[y][x] === "empty") {
+        if (grid[y + currentGridOffsetY][x + currentGridOffsetX] === "empty") {
           tooltip.style.display = "none";
           xp -= conveyorCost;
           new Building(type, position, directions[currentDirection]).add();
@@ -118,7 +120,7 @@ function buildEvent(type) {
         }
         break;
       case "smelter":
-        if (grid[y][x] === "empty") {
+        if (grid[y + currentGridOffsetY][x + currentGridOffsetX] === "empty") {
           tooltip.style.display = "none";
           xp -= smelterCost;
           new Building(type, position).add();
@@ -130,25 +132,25 @@ function buildEvent(type) {
         }
         break;
       case "remove":
-        switch (grid[y][x]) {
+        switch (grid[y + currentGridOffsetY][x + currentGridOffsetX]) {
           case "mineiron":
             tooltip.style.display = "none";
             xp += mineCost;
-            grid[y][x] = "iron";
+            grid[y + currentGridOffsetY][x + currentGridOffsetX] = "iron";
             buildSelected = false;
             projectionRemove();
             break;
           case "mineplatinum":
             tooltip.style.display = "none";
             xp += mineCost;
-            grid[y][x] = "platinum";
+            grid[y + currentGridOffsetY][x + currentGridOffsetX] = "platinum";
             buildSelected = false;
             projectionRemove();
             break;
           case "minegold":
             tooltip.style.display = "none";
             xp += mineCost;
-            grid[y][x] = "gold";
+            grid[y + currentGridOffsetY][x + currentGridOffsetX] = "gold";
             buildSelected = false;
             projectionRemove();
             break;
@@ -166,7 +168,7 @@ function buildEvent(type) {
           case "conveyorWS":
             tooltip.style.display = "none";
             xp += conveyorCost;
-            grid[y][x] = "empty";
+            grid[y + currentGridOffsetY][x + currentGridOffsetX] = "empty";
             buildSelected = false;
             projectionRemove();
             break;
@@ -175,7 +177,7 @@ function buildEvent(type) {
             smelterCost -= smelterCount * 20;
             smelterCount--;
             xp += smelterCost;
-            grid[y][x] = "empty";
+            grid[y + currentGridOffsetY][x + currentGridOffsetX] = "empty";
             buildSelected = false;
             projectionRemove();
             break;
