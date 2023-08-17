@@ -16,7 +16,6 @@ class Ore {
       setX = Math.floor(Math.random() * (columns.length - 2 - 2 + 1) + 2); //48
     }
     this.position = { setX, setY };
-    console.log(setX, setY);
   }
   add() {
     grid[this.position.setY][this.position.setX] = this.type;

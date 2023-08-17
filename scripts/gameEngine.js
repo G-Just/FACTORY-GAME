@@ -326,7 +326,6 @@ setInterval(() => {
 function offset() {
   coordX = pen.getTransform().m41;
   coordY = pen.getTransform().m42;
-  console.log(coordX, coordY);
   if (mouse.mouseDown) {
     offsetX = (mouseStartX - mouse.x) * -1;
     offsetY = (mouseStartY - mouse.y) * -1;
@@ -353,6 +352,7 @@ function offset() {
       pen.translate(0, Math.round(-2300 - coordY));
       working = true;
     }
+    working = false;
     if (!working) {
       offsetSnap(coordX, coordY);
     }
@@ -364,6 +364,7 @@ function offsetSnap(x, y) {
   let working = false;
   convertedX = Math.round(x / (32 * scale)) * (32 * scale);
   convertedY = Math.round(y / (32 * scale)) * (32 * scale);
+  // console.log(x, y, "TARGET", convertedX, convertedY); DEBUGGING LOG
   if (x > convertedX) {
     pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
     working = true;

@@ -166,6 +166,10 @@ function buildEvent(type) {
           case "conveyorW":
           case "conveyorWN":
           case "conveyorWS":
+          case "conveyorESN":
+          case "conveyorESW":
+          case "conveyorEWN":
+          case "conveyorSWN":
             tooltip.style.display = "none";
             xp += conveyorCost;
             grid[y + currentGridOffsetY][x + currentGridOffsetX] = "empty";

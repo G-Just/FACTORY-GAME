@@ -15,7 +15,6 @@ function conveyorPathHandler() {
               grid[i][j + 1] === "mineplatinum" ||
               grid[i][j + 1] === "minegold"
             ) {
-              4;
               grid[i][j] = "conveyorWN";
             }
             if (
@@ -165,7 +164,6 @@ function conveyorPathHandler() {
             ) {
               grid[i][j] = "conveyorWN";
             }
-            break;
             break;
         }
       }

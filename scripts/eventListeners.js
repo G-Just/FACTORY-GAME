@@ -37,9 +37,7 @@ window.addEventListener("keydown", (event) => {
     case "r":
     case "R":
       let patternConveyor = /conveyorBelt/i;
-      let patternLogistics = /sorter/i;
       let result = img.src.match(patternConveyor);
-      let result2 = img.src.match(patternLogistics); // TODO: add the merger/splitter art + logic
       //if conveyor is selected trigger the rotation
       if (result !== null) {
         if (currentDirection === 3) {
