@@ -338,19 +338,19 @@ function offset() {
     // FIXME: the coordinate bounds (edge of the board needs to scale with the scale value)
     let working = false;
     if (coordX > 0) {
-      pen.translate(Math.round((0 - coordX - 0.5) / 2 - 1), 0);
+      pen.translate(Math.round(0 - coordX), 0);
       working = true;
     }
-    if (coordX < -1600) {
-      pen.translate(Math.round((-1600 - coordX) / 2 + 1), 0);
+    if (coordX < -1599) {
+      pen.translate(Math.round(-1600 - coordX), 0);
       working = true;
     }
     if (coordY > 0) {
-      pen.translate(0, Math.round((0 - coordY) / 2 - 1));
+      pen.translate(0, Math.round(0 - coordY));
       working = true;
     }
-    if (coordY < -2300) {
-      pen.translate(0, Math.round((-2300 - coordY) / 2));
+    if (coordY < -2299) {
+      pen.translate(0, Math.round(-2300 - coordY));
       working = true;
     }
     if (!working) {
@@ -360,24 +360,24 @@ function offset() {
 }
 
 function offsetSnap(x, y) {
-  //FIXME: the nudge does not work need to figure out the math
+  //TODO: Make the nudge smoother so its not so jarring when you let go of the panning
   let working = false;
   convertedX = Math.round(x / (32 * scale)) * (32 * scale);
   convertedY = Math.round(y / (32 * scale)) * (32 * scale);
   if (x > convertedX) {
-    pen.translate(Math.round((convertedX - x) / 2), 0);
+    pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
     working = true;
   }
   if (x < convertedX) {
-    pen.translate(Math.round((x - convertedX) / 2), 0);
+    pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
     working = true;
   }
   if (y > convertedY) {
-    pen.translate(0, Math.round((y - convertedX) / 2));
+    pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
     working = true;
   }
   if (y < convertedY) {
-    pen.translate(0, Math.round((convertedX - y) / 2));
+    pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
     working = true;
   }
   currentGridOffsetX = Math.round(x / (32 * scale));
@@ -389,6 +389,14 @@ function offsetSnap(x, y) {
     currentGridOffsetY *= -1;
   }
 }
+// context.setTransform(a, b, c, d, e, f)
+// a	Scales the drawings horizontally
+// b	Skews the drawings horizontally
+// c	Skews the drawings vertically
+// d	Scales the drawings vertically
+// e	Moves the the drawings horizontally
+// f	Moves the the drawings vertically
+
 // Animation loop
 var delta = 1000 / 60; //delay between frames
 var oldTime = 0;
