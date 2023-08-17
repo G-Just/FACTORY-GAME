@@ -327,8 +327,8 @@ function offset() {
   coordX = pen.getTransform().m41;
   coordY = pen.getTransform().m42;
   if (mouse.mouseDown) {
-    offsetX = (mouseStartX - mouse.x) * -1;
-    offsetY = (mouseStartY - mouse.y) * -1;
+    offsetX = (mouseStartX - mouse.x) * -1 * scale;
+    offsetY = (mouseStartY - mouse.y) * -1 * scale;
     pen.translate(offsetX, offsetY);
     mouseStartX = mouse.x;
     mouseStartY = mouse.y;
@@ -336,6 +336,7 @@ function offset() {
   if (!mouse.mouseDown) {
     // FIXME: the coordinate bounds (edge of the board needs to scale with the scale value)
     let working = false;
+    // console.log(coordX, coordY);
     if (coordX > 0) {
       pen.translate(Math.round(0 - coordX), 0);
       working = true;
@@ -348,8 +349,8 @@ function offset() {
       pen.translate(0, Math.round(0 - coordY));
       working = true;
     }
-    if (coordY < -2299) {
-      pen.translate(0, Math.round(-2300 - coordY));
+    if (coordY < -2303) {
+      pen.translate(0, Math.round(-2304 - coordY));
       working = true;
     }
     working = false;
@@ -364,7 +365,7 @@ function offsetSnap(x, y) {
   let working = false;
   convertedX = Math.round(x / (32 * scale)) * (32 * scale);
   convertedY = Math.round(y / (32 * scale)) * (32 * scale);
-  // console.log(x, y, "TARGET", convertedX, convertedY); DEBUGGING LOG
+  // console.log(x, y, "TARGET", convertedX, convertedY); //DEBUGGING LOG
   if (x > convertedX) {
     pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
     working = true;

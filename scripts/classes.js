@@ -83,10 +83,10 @@ class Resource {
   }
   // updates the position of the ore
   update() {
-    const LuX = Math.floor((this.x + 2) / 32);
-    const TuY = Math.floor((this.y + 2) / 32);
-    const RuX = Math.floor((this.x + 30) / 32);
-    const BuY = Math.floor((this.y + 30) / 32);
+    const LuX = Math.floor((this.x + 2) / 32); // left
+    const TuY = Math.floor((this.y + 2) / 32); // top
+    const RuX = Math.floor((this.x + 30) / 32); // right
+    const BuY = Math.floor((this.y + 30) / 32); // bottom
     try {
       //right
       if (
