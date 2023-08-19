@@ -1,0 +1,18 @@
+#Projection system
+Changes colors from transparent gray -> green when place is valid
+Add an animation that rotates around the top part of the projection and swings based on the mouse movement
+
+#Features
+Esc key should remove the event listener, right now it only removes the label + projection
+(Might need to reformat the code to enable removing the event listener (it is currently an anonymous function))
+conveyors should form t and 4 way intersections for better management
+
+#Gameplay
+Make the word bigger and make the camera able to pan around it
+Zooming in + out?
+
+#Economy
+Introduce more buildings (smelter outputs something??)
+
+#Sounds
+Add game event sounds like gained money etc.
