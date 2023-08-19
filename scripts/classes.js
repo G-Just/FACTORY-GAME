@@ -24,8 +24,8 @@ class Ore {
       0,
       0,
       scale,
-      this.position.setX * (32 * scale) * -1,
-      this.position.setY * (32 * scale) * -1
+      (this.position.setX - 2) * (-32 * scale),
+      (this.position.setY - 2) * (-32 * scale)
     );
     // context.setTransform(a, b, c, d, e, f)
     // a	Scales the drawings horizontally

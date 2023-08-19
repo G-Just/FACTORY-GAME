@@ -334,23 +334,36 @@ function offset() {
     mouseStartY = mouse.y;
   }
   if (!mouse.mouseDown) {
-    // FIXME: the coordinate bounds (edge of the board needs to scale with the scale value)
     let working = false;
-    // console.log(coordX, coordY);
+    // console.log(coordX, coordY); // DEBUGGING LOG
     if (coordX > 0) {
-      pen.translate(Math.round(0 - coordX), 0);
+      pen.setTransform(scale, 0, 0, scale, 0, coordY);
       working = true;
     }
-    if (coordX < -1599) {
-      pen.translate(Math.round(-1600 - coordX), 0);
+    if (coordX < grid[0].length * (-32 * scale) + canvas.width) {
+      pen.setTransform(
+        scale,
+        0,
+        0,
+        scale,
+        grid[0].length * (-32 * scale) + canvas.width,
+        coordY
+      );
       working = true;
     }
     if (coordY > 0) {
-      pen.translate(0, Math.round(0 - coordY));
+      pen.setTransform(scale, 0, 0, scale, coordX, 0);
       working = true;
     }
-    if (coordY < -2303) {
-      pen.translate(0, Math.round(-2304 - coordY));
+    if (coordY < grid.length * (-32 * scale) + canvas.height) {
+      pen.setTransform(
+        scale,
+        0,
+        0,
+        scale,
+        coordX,
+        grid.length * (-32 * scale) + canvas.height
+      );
       working = true;
     }
     working = false;
@@ -359,31 +372,57 @@ function offset() {
     }
   }
 }
+// context.setTransform(a, b, c, d, e, f)
+// a	Scales the drawings horizontally
+// b	Skews the drawings horizontally
+// c	Skews the drawings vertically
+// d	Scales the drawings vertically
+// e	Moves the the drawings horizontally
+// f	Moves the the drawings vertically
 
 function offsetSnap(x, y) {
-  //TODO: Make the nudge smoother so its not so jarring when you let go of the panning
+  //FIXME: the scale at some point rounds into an error and the edge is slightly off (can live with that, but could be fixed)
   let working = false;
-  convertedX = Math.round(x / (32 * scale)) * (32 * scale);
-  convertedY = Math.round(y / (32 * scale)) * (32 * scale);
-  // console.log(x, y, "TARGET", convertedX, convertedY); //DEBUGGING LOG
-  if (x > convertedX) {
-    pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
+  // target to the nearest (32*scale) cell
+  targetX = Math.round(Math.round(x / (32 * scale)) * 32 * scale);
+  targetY = Math.round(Math.round(y / (32 * scale)) * 32 * scale);
+  // console.log(
+  //   "X:",
+  //   x,
+  //   "Y:",
+  //   y,
+  //   "|| TARGET",
+  //   targetX,
+  //   targetY,
+  //   "SCALE",
+  //   scale
+  // ); //DEBUGGING LOG
+  if (targetX < grid[0].length * (-32 * scale) + canvas.width) {
+    targetX = grid[0].length * (-32 * scale) + canvas.width;
+  }
+  if (targetY < grid.length * (-32 * scale) + canvas.height) {
+    targetY = grid.length * (-32 * scale) + canvas.height;
+  }
+  if (x > targetX) {
+    pen.setTransform(scale, 0, 0, scale, targetX, targetY);
     working = true;
   }
-  if (x < convertedX) {
-    pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
+  if (x < targetX) {
+    pen.setTransform(scale, 0, 0, scale, targetX, targetY);
     working = true;
   }
-  if (y > convertedY) {
-    pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
+  if (y > targetY) {
+    pen.setTransform(scale, 0, 0, scale, targetX, targetY);
     working = true;
   }
-  if (y < convertedY) {
-    pen.setTransform(scale, 0, 0, scale, convertedX, convertedY);
+  if (y < targetY) {
+    pen.setTransform(scale, 0, 0, scale, targetX, targetY);
     working = true;
   }
+  //creates the offset on the grid so that the clicks correspond to the correct cell -> grid index
   currentGridOffsetX = Math.round(x / (32 * scale));
   currentGridOffsetY = Math.round(y / (32 * scale));
+  // if the offset is not 0 -> meaning its been moved flip the value to a positive to apply in the grid array index calls
   if (currentGridOffsetX !== 0) {
     currentGridOffsetX *= -1;
   }

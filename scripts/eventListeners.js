@@ -66,34 +66,34 @@ window.addEventListener("keydown", (event) => {
 //scrollwheel event listener will change the scale of the entire game
 let scale = 1;
 let borderScale = 1;
-// canvas.addEventListener("wheel", (event) => {
-//   if (scale > 0.5 && scale <= 1.4) {
-//     if (event.deltaY < 0) {
-//       scale += 0.1;
-//       borderScale -= 0.1;
-//     }
-//     if (event.deltaY > 0) {
-//       scale -= 0.1;
-//       borderScale += 0.1;
-//     }
-//   } else {
-//     if (scale === 0.5) {
-//       if (event.deltaY < 0) {
-//         scale += 0.1;
-//         borderScale -= 0.1;
-//       }
-//     }
-//     if (scale === 1.5) {
-//       if (event.deltaY > 0) {
-//         scale -= 0.1;
-//         borderScale += 0.1;
-//       }
-//     }
-//   }
-//   scale = Number(scale.toPrecision(2));
-//   borderScale = Number(borderScale.toPrecision(2));
-//   pen.setTransform(scale, 0, 0, scale, coordX, coordY);
-// });
+canvas.addEventListener("wheel", (event) => {
+  if (scale > 0.5 && scale <= 1.4) {
+    if (event.deltaY < 0) {
+      scale += 0.1;
+      borderScale -= 0.1;
+    }
+    if (event.deltaY > 0) {
+      scale -= 0.1;
+      borderScale += 0.1;
+    }
+  } else {
+    if (scale === 0.5) {
+      if (event.deltaY < 0) {
+        scale += 0.1;
+        borderScale -= 0.1;
+      }
+    }
+    if (scale === 1.5) {
+      if (event.deltaY > 0) {
+        scale -= 0.1;
+        borderScale += 0.1;
+      }
+    }
+  }
+  scale = Number(scale.toPrecision(2));
+  borderScale = Number(borderScale.toPrecision(2));
+  pen.setTransform(scale, 0, 0, scale, coordX, coordY);
+});
 // context.setTransform(a, b, c, d, e, f)
 // a	Scales the drawings horizontally
 // b	Skews the drawings horizontally
