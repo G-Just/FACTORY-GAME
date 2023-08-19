@@ -384,8 +384,8 @@ function offsetSnap(x, y) {
   //FIXME: the scale at some point rounds into an error and the edge is slightly off (can live with that, but could be fixed)
   let working = false;
   // target to the nearest (32*scale) cell
-  targetX = Math.round(Math.round(x / (32 * scale)) * 32 * scale);
-  targetY = Math.round(Math.round(y / (32 * scale)) * 32 * scale);
+  targetX = Math.round(x / (32 * scale)) * Math.round(32 * scale);
+  targetY = Math.round(y / (32 * scale)) * Math.round(32 * scale);
   // console.log(
   //   "X:",
   //   x,
@@ -420,8 +420,8 @@ function offsetSnap(x, y) {
     working = true;
   }
   //creates the offset on the grid so that the clicks correspond to the correct cell -> grid index
-  currentGridOffsetX = Math.round(x / (32 * scale));
-  currentGridOffsetY = Math.round(y / (32 * scale));
+  currentGridOffsetX = Math.round((x / 32) * scale);
+  currentGridOffsetY = Math.round((y / 32) * scale);
   // if the offset is not 0 -> meaning its been moved flip the value to a positive to apply in the grid array index calls
   if (currentGridOffsetX !== 0) {
     currentGridOffsetX *= -1;
