@@ -1,9 +1,0 @@
-Kai atsidaro page, iskart ismeta index.html page. 
-Index.html page bus visas meniu, tas meniu gali but koks tik nori, viskas savo nuoziura, bet privalo buti :
-    Kazkoks budas kaip is index.html nueiti i game.html (dazniausia naudojamas <a> tagas [pagooglink])
-Visas index.html css rasomas i styles/menu.css. main.css bus visi styles kurie galios visuose pages tai ten random nerasyk nieko.
-
-    
-Game.html page bus jau padarytas migtukas kuris nuves i guide.html. 
-Tame guide html bus info apie game controlls ir tt.
-Guide irgi savo nuoziura tik veliau papildysiu kokios svarbiausios game taisykles + controlls (galbut reiks idet screenshots ir tt.)
