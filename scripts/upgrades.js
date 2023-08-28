@@ -158,7 +158,3 @@ function addOre(type) {
       break;
   }
 }
-
-// TODO: add different types of ore (make a sprite and code in logic),
-// expensive to buy a better deposit, but each resource grants more money,
-// upgrading resource tier increased rewards substantially
