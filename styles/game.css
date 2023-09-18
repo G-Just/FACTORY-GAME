@@ -1,0 +1,252 @@
+body {
+  margin: 10px 160px;
+  background-color: rgb(20, 20, 20);
+  overflow: hidden;
+}
+
+#background {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+  filter: blur(3px);
+}
+
+#buttons {
+  position: absolute;
+  right: 30px;
+  top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+#upgrade-button {
+  position: absolute;
+  left: 30px;
+  top: 310px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.price {
+  color: white;
+  font-size: 20pt;
+  position: absolute;
+  z-index: 1;
+  bottom: -51%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  text-shadow: 3px 3px black;
+}
+
+.build-button,
+#upgrade {
+  color: black;
+  font-size: 12pt;
+  cursor: pointer;
+  background-color: grey;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  border-radius: 20px;
+}
+
+.build-button::after,
+#upgrade::after {
+  content: "";
+  position: absolute;
+  width: 107px;
+  height: 107px;
+  border: 10px solid rgb(45, 45, 45);
+  border-radius: 20px;
+  top: -6px;
+  left: -6px;
+  transform: rotate(7deg);
+  box-shadow: 5px 5px white;
+}
+
+.build-button:hover,
+#upgrade:hover {
+  background-color: lightgray;
+}
+
+.build-button:focus,
+#upgrade:focus {
+  background-color: lightgray;
+  outline: none;
+}
+
+.build-button:active::after,
+#upgrade:active::after {
+  box-shadow: 0px 0px white;
+}
+
+.build-button:active,
+#upgrade:active {
+  left: 5px;
+  top: 5px;
+}
+
+#tooltip {
+  letter-spacing: 5px;
+  text-shadow: 3px 3px black;
+  position: absolute;
+  top: 11%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: white;
+  font-size: 20pt;
+  pointer-events: none;
+}
+
+#projection {
+  position: absolute;
+  pointer-events: none;
+}
+
+#stats {
+  position: absolute;
+  left: 15px;
+  width: 130px;
+  top: 10px;
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(30, 30, 30, 0.8);
+}
+
+#xp {
+  color: white;
+  font-size: 16pt;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#xp > hr {
+  width: 100%;
+}
+
+#xpLabel {
+  font-size: 16pt;
+  margin: 10px;
+}
+
+#upgrade-window {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px 50px;
+  text-align: center;
+  color: white;
+}
+
+#upgrade-window > h1 {
+  margin: 0;
+  text-shadow: 5px 5px black;
+  color: white;
+  font-size: 35pt;
+  letter-spacing: 10px;
+}
+
+#upgrade-window > hr {
+  width: 100%;
+  border: 5px solid white;
+}
+
+#upgrade-window hr {
+  width: 100%;
+  border: 2px solid white;
+}
+
+#upgrade-window h2 {
+  margin-top: 20px;
+  margin-bottom: 0;
+  text-shadow: 3px 3px black;
+  color: white;
+  font-size: 22pt;
+  letter-spacing: 5px;
+}
+
+#upgrade-window > h2 {
+  margin-top: 50px !important;
+}
+
+#exit-upgrades {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 30pt;
+  font-weight: 400;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+}
+
+#exit-upgrades:hover {
+  color: black;
+}
+
+#upgrade-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.upgrades {
+  display: flex;
+  gap: 50px;
+  padding: 10px;
+}
+
+.moneyGained {
+  position: absolute;
+  color: white;
+  letter-spacing: 2px;
+  pointer-events: none;
+  cursor: none;
+}
+
+.upgrade-options {
+  cursor: pointer;
+  width: 300px;
+  height: 150px;
+  position: relative;
+  background-color: gray;
+  border: 5px solid rgb(20, 20, 20);
+  font-size: 18pt;
+}
+
+.upgrade-options:hover {
+  background-color: lightgray;
+}
+
+.price-upgrade {
+  color: white;
+  font-size: 30pt;
+  position: absolute;
+  z-index: 1;
+  bottom: -58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 3px 3px black;
+}
+
+.calcs {
+  top: 150px !important;
+  width: 100px;
+}
+
+#income {
+  font-size: 16pt;
+  margin: 0;
+}
