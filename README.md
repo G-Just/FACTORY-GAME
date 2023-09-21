@@ -10,3 +10,5 @@
 1. Conveyor belt pathing (to connect them is multiple ways based on the placement direction)
 2. Class based buldings, resources.
 3. Using coockies and local storage to save current players data ( so the game does not reset after each reload )
+
+Link to the game -> https://g-just.github.io/factory-game-website/
