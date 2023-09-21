@@ -50,7 +50,7 @@ function resourceGenerate(x, y, type) {
   generationTimer++;
   coords.push({ x: x, y: y, type: type });
   // magical code WHO DA FUCK KNOWS HOW THIS WORKS
-  // Removes all the duplicates from coords and makes a unique only coordsfinal array
+  // Removes all the duplicates from coords and makes a unique only 'coordsFinal' array
   coordsFinal = coords.filter(
     (value, index, self) =>
       index === self.findIndex((t) => t.x === value.x && t.y === value.y)
