@@ -8,8 +8,8 @@
 
 * Interesting features (learning moments) :
 1. Conveyor belt pathing (to connect them in multiple ways based on the placement direction)
-2. Class-based buildings, resources.
+2. Class-based buildings and resources.
 3. Using cookies and local storage to save the current player's data ( so the game does not reset after each reload )
-4. Making the game world bigger than the screen (enabling panning by dragging the mouse)
+4. Making the game world more extensive than the screen (enabling panning by dragging the mouse)
 
-Link to the game -> https://g-just.github.io/factory-game-website/
+Website published at -> https://g-just.github.io/factory-game-website/
