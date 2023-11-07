@@ -73,7 +73,7 @@ function buildEvent(type) {
       tooltip.innerHTML = "Now building : Mine";
       break;
     case "conveyor":
-      tooltip.innerHTML = "Now building : Conveyor";
+      tooltip.innerHTML = "Now building : Conveyor ('r' to rotate)";
       break;
     case "smelter":
       tooltip.innerHTML = "Now building : Smelter";
