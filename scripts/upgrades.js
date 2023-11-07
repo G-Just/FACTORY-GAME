@@ -46,24 +46,18 @@ let conveyorUpgradeText = document.getElementById("conveyorUpgradeText");
 let smelterUpgradeText = document.getElementById("smelterUpgradeText");
 
 function updateLabels() {
-  mineUpgradeCostLabel.innerHTML = `$${numberWithCommas(
-    upgradePrices.mineUpgradePrice
-  )}`;
+  mineUpgradeCostLabel.innerHTML = `$${numberWithCommas(upgradePrices.mineUpgradePrice)}`;
   conveyorUpgradeCostLabel.innerHTML = `$${numberWithCommas(
     upgradePrices.conveyorUpgradePrice
   )}`;
   smelterUpgradeCostLabel.innerHTML = `$${numberWithCommas(
     upgradePrices.smelterUpgradePrice
   )}`;
-  ironUpgradeCostLabel.innerHTML = `$${numberWithCommas(
-    upgradePrices.ironUpgradePrice
-  )}`;
+  ironUpgradeCostLabel.innerHTML = `$${numberWithCommas(upgradePrices.ironUpgradePrice)}`;
   platinumUpgradeCostLabel.innerHTML = `$${numberWithCommas(
     upgradePrices.platinumUpgradePrice
   )}`;
-  goldUpgradeCostLabel.innerHTML = `$${numberWithCommas(
-    upgradePrices.goldUpgradePrice
-  )}`;
+  goldUpgradeCostLabel.innerHTML = `$${numberWithCommas(upgradePrices.goldUpgradePrice)}`;
   minerUpgradeText.innerHTML = `Miner speed<br>Tier: ${tiers.mineTier}`;
   conveyorUpgradeText.innerHTML = `Conveyor speed<br>Tier: ${tiers.conveyorTier}`;
   smelterUpgradeText.innerHTML = `Ore price<br>Tier: ${tiers.smelterTier}`;

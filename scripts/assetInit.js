@@ -62,7 +62,7 @@ platinumDeposit.setAttribute("src", "./art/platinumResource.png");
 var goldDeposit = document.createElement("img");
 goldDeposit.setAttribute("src", "./art/goldResource.png");
 
-//sounds
+// TODO: sounds
 
 //buttons
 const mineButton = document.getElementById("mine");
